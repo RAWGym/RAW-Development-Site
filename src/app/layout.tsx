@@ -38,7 +38,6 @@ export const metadata: Metadata = {
   },
   description:
     "Студия разработки RAW Development: сайты, мобильные приложения, Telegram-боты и Mini Apps, игры и медиа-продукты для бизнеса и для себя. 8+ лет опыта.",
-  icons: { icon: "/brand/raw-logo-white.svg" },
 };
 
 export const viewport: Viewport = {

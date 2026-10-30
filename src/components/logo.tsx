@@ -1,20 +1,26 @@
-import { LOGO_PATH, LOGO_VIEWBOX } from "./logo-path";
-
 type Props = {
   className?: string;
   title?: string;
 };
 
-export function Logo({ className, title = "RAW Development" }: Props) {
+// Логотип RAW (векторизован из PNG владельца, файл public/brand/raw-logo.svg).
+// Рисуется маской, поэтому берёт цвет текста (currentColor) и не раздувает HTML.
+export function Logo({ className = "", title = "RAW Development" }: Props) {
   return (
-    <svg
-      viewBox={LOGO_VIEWBOX}
-      className={className}
+    <span
       role="img"
       aria-label={title}
-      fill="currentColor"
-    >
-      <path fillRule="evenodd" d={LOGO_PATH} />
-    </svg>
+      className={`inline-block aspect-[3098/1597] bg-current ${className}`}
+      style={{
+        maskImage: "url(/brand/raw-logo.svg)",
+        WebkitMaskImage: "url(/brand/raw-logo.svg)",
+        maskSize: "contain",
+        WebkitMaskSize: "contain",
+        maskRepeat: "no-repeat",
+        WebkitMaskRepeat: "no-repeat",
+        maskPosition: "center",
+        WebkitMaskPosition: "center",
+      }}
+    />
   );
 }
