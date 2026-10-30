@@ -58,7 +58,7 @@ export function Hero() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgb(237 235 231 / 0.22) 1px, transparent 1px), linear-gradient(90deg, rgb(237 235 231 / 0.22) 1px, transparent 1px)",
+              "linear-gradient(rgb(var(--fg-rgb) / 0.22) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--fg-rgb) / 0.22) 1px, transparent 1px)",
             backgroundSize: "64px 64px",
             maskImage: "radial-gradient(260px circle at var(--mx, -500px) var(--my, -500px), black, transparent 70%)",
             WebkitMaskImage:

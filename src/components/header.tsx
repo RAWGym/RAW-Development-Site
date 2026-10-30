@@ -6,7 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import { Logo } from "./logo";
 import { setScrollLocked } from "./smooth-scroll";
 import { nav, site } from "@/content/site";
+import { en, enNav } from "@/content/en";
 import { PALETTE_EVENT } from "./command-palette";
+import { ThemeToggle } from "./theme-toggle";
 
 // Шапка: на старте — полная строка, при прокрутке сжимается в стеклянную капсулу.
 // Под пунктами меню ездит подсветка, кнопка прокручивает текст при наведении.
@@ -16,6 +18,9 @@ export function Header() {
   // Меню открыто только на той странице, где его открыли: переход закрывает его сам.
   const [openAt, setOpenAt] = useState<string | null>(null);
   const open = openAt === pathname;
+  const isEn = pathname.startsWith("/en");
+  const items: readonly { href: string; label: string }[] = isEn ? enNav : nav;
+  const cta = isEn ? { href: "/en#contact", label: en.cta } : { href: "/start", label: "Обсудить проект" };
 
   useEffect(() => {
     const onScroll = () => setCompact(window.scrollY > 80);
@@ -48,11 +53,11 @@ export function Header() {
         className={[
           "relative flex w-full items-center justify-between gap-6 border transition-[max-width,padding,background-color,border-color,border-radius] duration-700 ease-[var(--ease-out)]",
           compact && !open
-            ? "max-w-[940px] rounded-full border-line-strong bg-[var(--glass)] py-2 pl-5 pr-2 shadow-[0_10px_40px_-12px_rgb(0_0_0/0.7)] backdrop-blur-xl"
+            ? "max-w-[1040px] rounded-full border-line-strong bg-[var(--glass)] py-2 pl-5 pr-2 shadow-[0_10px_40px_-12px_rgb(0_0_0/0.7)] backdrop-blur-xl"
             : "max-w-[1440px] rounded-none border-transparent bg-transparent px-0 py-3",
         ].join(" ")}
       >
-        <Link href="/" aria-label="RAW Development — на главную" className="group flex shrink-0 items-center gap-3">
+        <Link href={isEn ? "/en" : "/"} aria-label={isEn ? "RAW Development — home" : "RAW Development — на главную"} className="group flex shrink-0 items-center gap-3">
           <Logo className={`h-auto text-fg transition-[width] duration-700 ease-[var(--ease-out)] ${compact ? "w-[52px]" : "w-[68px]"}`} />
           <span
             className={`hidden font-mono text-[10px] uppercase leading-[1.15] tracking-[0.14em] text-muted transition-opacity duration-500 lg:block ${compact ? "opacity-0" : "opacity-100"}`}
@@ -64,7 +69,7 @@ export function Header() {
           </span>
         </Link>
 
-        <NavPills pathname={pathname} />
+        <NavPills pathname={pathname} items={items} />
 
         <div className="flex items-center gap-2">
           <span
@@ -74,8 +79,17 @@ export function Header() {
               <span className="absolute inset-0 animate-ping rounded-full bg-[#5fd38d] opacity-70" />
               <span className="relative h-1.5 w-1.5 rounded-full bg-[#5fd38d]" />
             </span>
-            {site.status}
+            {isEn ? en.status : site.status}
           </span>
+          <Link
+            href={isEn ? "/" : "/en"}
+            hrefLang={isEn ? "ru" : "en"}
+            className="grid h-9 min-w-9 place-items-center rounded-full border border-line-strong px-2 font-mono text-[11px] text-muted transition-colors hover:border-fg hover:text-fg"
+            aria-label={isEn ? "RU — русская версия" : "EN — English version"}
+          >
+            {isEn ? "RU" : "EN"}
+          </Link>
+          <ThemeToggle />
           <button
             type="button"
             onClick={() => window.dispatchEvent(new Event(PALETTE_EVENT))}
@@ -84,8 +98,8 @@ export function Header() {
           >
             <span className="font-sans">⌘</span>K
           </button>
-          <RollButton href="/start" className="hidden sm:inline-flex">
-            Обсудить проект
+          <RollButton href={cta.href} className="hidden sm:inline-flex">
+            {cta.label}
           </RollButton>
           <button
             type="button"
@@ -103,12 +117,12 @@ export function Header() {
         </div>
       </div>
 
-      <MobileMenu open={open} pathname={pathname} />
+      <MobileMenu open={open} pathname={pathname} items={items} cta={cta} onClose={() => setOpenAt(null)} home={isEn ? { href: "/en", label: en.home } : { href: "/", label: "Главная" }} />
     </header>
   );
 }
 
-function NavPills({ pathname }: { pathname: string }) {
+function NavPills({ pathname, items }: { pathname: string; items: readonly { href: string; label: string }[] }) {
   const list = useRef<HTMLUListElement>(null);
   const pill = useRef<HTMLSpanElement>(null);
 
@@ -144,8 +158,8 @@ function NavPills({ pathname }: { pathname: string }) {
           className="pointer-events-none absolute inset-y-0 left-0 rounded-full bg-fg/[0.08] opacity-0 ring-1 ring-inset ring-fg/10 transition-[transform,width,opacity] duration-500 ease-[var(--ease-out)]"
           aria-hidden="true"
         />
-        {nav.map((item) => {
-          const active = pathname.startsWith(item.href);
+        {items.map((item) => {
+          const active = !item.href.includes("#") && pathname.startsWith(item.href);
           return (
             <li key={item.href}>
               <Link
@@ -167,10 +181,11 @@ function NavPills({ pathname }: { pathname: string }) {
 }
 
 // Кнопка, у которой текст при наведении уезжает вверх, а снизу приезжает такой же.
-export function RollButton({ href, children, className = "" }: { href: string; children: string; className?: string }) {
+export function RollButton({ href, children, className = "", onClick }: { href: string; children: string; className?: string; onClick?: () => void }) {
   return (
     <Link
       href={href}
+      onClick={onClick}
       data-magnetic="0.2"
       className={`group relative shrink-0 items-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-fg py-2 pl-4 pr-2 text-[13px] font-medium text-bg ${className}`}
     >
@@ -187,7 +202,8 @@ export function RollButton({ href, children, className = "" }: { href: string; c
   );
 }
 
-function MobileMenu({ open, pathname }: { open: boolean; pathname: string }) {
+type NavItem = { href: string; label: string };
+function MobileMenu({ open, pathname, items, cta, home, onClose }: { open: boolean; pathname: string; items: readonly NavItem[]; cta: NavItem; home: NavItem; onClose: () => void }) {
   return (
     <div
       id="mobile-menu"
@@ -203,12 +219,13 @@ function MobileMenu({ open, pathname }: { open: boolean; pathname: string }) {
       data-lenis-prevent
     >
       <ul className="flex flex-col">
-        {[{ href: "/", label: "Главная" }, ...nav].map((item, i) => {
-          const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+        {[home, ...items].map((item, i) => {
+          const active = item.href === home.href ? pathname === home.href : !item.href.includes("#") && pathname.startsWith(item.href);
           return (
             <li key={item.href} className="overflow-hidden border-b border-line">
               <Link
                 href={item.href}
+                onClick={onClose}
                 className={`flex items-baseline gap-4 py-4 font-display text-[clamp(30px,9vw,44px)] uppercase leading-none transition-[transform,opacity] duration-700 ease-[var(--ease-out)] [font-variation-settings:'wdth'_115] ${open ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"} ${active ? "text-fg" : "text-muted"}`}
                 style={{ transitionDelay: open ? `${120 + i * 60}ms` : "0ms" }}
               >
@@ -223,8 +240,8 @@ function MobileMenu({ open, pathname }: { open: boolean; pathname: string }) {
         className={`flex flex-col gap-5 transition-opacity duration-700 ${open ? "opacity-100" : "opacity-0"}`}
         style={{ transitionDelay: open ? "420ms" : "0ms" }}
       >
-        <RollButton href="/start" className="inline-flex self-start">
-          Обсудить проект
+        <RollButton href={cta.href} onClick={onClose} className="inline-flex self-start">
+          {cta.label}
         </RollButton>
         <a href={site.contacts.whatsapp.href} className="font-mono text-[12px] text-muted">
           WhatsApp · {site.contacts.whatsapp.label}

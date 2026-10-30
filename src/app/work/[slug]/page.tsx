@@ -146,7 +146,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
           <div className="grid gap-12 md:grid-cols-3">
             {c.results.map((r, i) => (
               <Reveal key={r.label} delay={i * 0.08} className={i > 0 ? "md:border-l md:border-line md:pl-8" : ""}>
-                <div className="font-display text-[clamp(44px,6vw,96px)] font-semibold leading-none [font-variation-settings:'wdth'_115]">{r.value}</div>
+                <div className="whitespace-nowrap font-display text-[clamp(40px,5vw,88px)] font-semibold leading-none [font-variation-settings:'wdth'_105]">{r.value}</div>
                 <div className="label mt-4">{r.label}</div>
               </Reveal>
             ))}

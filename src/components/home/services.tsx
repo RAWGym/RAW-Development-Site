@@ -84,8 +84,8 @@ function SpotlightBorder() {
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 rounded-[24px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
       style={{
-        background: "radial-gradient(400px circle at var(--sx, 50%) var(--sy, 50%), rgb(237 235 231 / 0.07), transparent 60%)",
-        boxShadow: "inset 0 0 0 1px rgb(237 235 231 / 0.14)",
+        background: "radial-gradient(400px circle at var(--sx, 50%) var(--sy, 50%), rgb(var(--fg-rgb) / 0.07), transparent 60%)",
+        boxShadow: "inset 0 0 0 1px rgb(var(--fg-rgb) / 0.14)",
       }}
     />
   );

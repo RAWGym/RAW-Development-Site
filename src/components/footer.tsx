@@ -3,13 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FooterLogo } from "./footer-logo";
-import { nav, site } from "@/content/site";
+import { extraPages, nav, site } from "@/content/site";
+import { en, enNav } from "@/content/en";
 import { scrollToTop } from "./smooth-scroll";
 
 export function Footer() {
   const { whatsapp, telegram, email } = site.contacts;
-  // Там, где уже есть форма заявки, бегущая строка «Обсудить проект» не нужна
-  const showCta = !["/", "/start", "/contact"].includes(usePathname());
+    // Бегущая строка — только там, где нет своей формы или призыва внизу страницы
+  const path = usePathname();
+  const isEn = path.startsWith("/en");
+  const f = en.footer;
+  const showCta = path.startsWith("/work") || path === "/privacy";
 
   return (
     <>
@@ -43,21 +47,21 @@ export function Footer() {
     >
       <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-10 md:grid-cols-12 md:gap-6">
         <div className="col-span-2 flex flex-col gap-4 md:col-span-5">
-          <span className="label">[∞] — Связаться</span>
+          <span className="label">{isEn ? "[∞] — Get in touch" : "[∞] — Связаться"}</span>
           <p className="max-w-[28ch] font-display text-2xl leading-[1.08] md:text-4xl" style={{ fontVariationSettings: "'wdth' 120" }}>
-            Сайты, приложения и боты — от идеи до пикселя.
+            {isEn ? f.tagline : "Сайты, приложения и боты — от идеи до пикселя."}
           </p>
           <div className="flex items-center gap-2 font-mono text-[11px] text-muted">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#5fd38d] opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[#5fd38d]" />
             </span>
-            {site.status}
+            {isEn ? en.status : site.status}
           </div>
         </div>
 
         <div className="col-span-2 flex flex-col gap-3 sm:col-span-1 md:col-span-3 md:col-start-7">
-          <span className="label">Контакты</span>
+          <span className="label">{isEn ? f.contacts : "Контакты"}</span>
           <a href={whatsapp.href} target="_blank" rel="noreferrer" className="whitespace-nowrap text-fg/90 transition-colors hover:text-fg">
             WhatsApp {whatsapp.label}
           </a>
@@ -71,12 +75,12 @@ export function Footer() {
               {email}
             </a>
           )}
-          <span className="text-muted">{site.city}</span>
+          <span className="text-muted">{isEn ? f.city : site.city}</span>
         </div>
 
         <div className="flex flex-col gap-3 md:col-span-2">
-          <span className="label">Разделы</span>
-          {nav.map((item) => (
+          <span className="label">{isEn ? f.sections : "Разделы"}</span>
+          {(isEn ? enNav : [...nav, ...extraPages.filter((p) => p.href !== "/start")]).map((item) => (
             <Link key={item.href} href={item.href} className="text-fg/90 transition-colors hover:text-fg">
               {item.label}
             </Link>
@@ -89,7 +93,7 @@ export function Footer() {
             onClick={scrollToTop}
             className="label rounded-full border border-line-strong px-3 py-2 transition-colors hover:border-fg hover:text-fg"
           >
-            Наверх ↑
+            {isEn ? f.top : "Наверх ↑"}
           </button>
         </div>
       </div>
@@ -98,9 +102,9 @@ export function Footer() {
         <FooterLogo />
         <div className="mt-6 flex flex-wrap justify-between gap-3 font-mono text-[10px] tracking-wider text-muted">
           <span>© 2018–2026 RAW Development</span>
-          <span>{site.yearsOfExperience}+ лет в разработке</span>
-          <a href="/privacy" className="transition-colors hover:text-fg">Конфиденциальность</a>
-          <span>Сделано вручную, до пикселя</span>
+          <span>{site.yearsOfExperience}+ {isEn ? f.years : "лет в разработке"}</span>
+          <a href="/privacy" className="transition-colors hover:text-fg">{isEn ? f.privacy : "Конфиденциальность"}</a>
+          <span>{isEn ? f.made : "Сделано вручную, до пикселя"}</span>
         </div>
       </div>
     </footer>

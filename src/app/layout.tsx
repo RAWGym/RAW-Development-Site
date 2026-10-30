@@ -1,3 +1,4 @@
+import { themeScript } from "@/components/theme-script";
 import type { Metadata, Viewport } from "next";
 import { Science_Gothic, Geologica, Martian_Mono } from "next/font/google";
 import "./globals.css";
@@ -85,7 +86,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: preloadScript }} />
+        <script dangerouslySetInnerHTML={{ __html: preloadScript + themeScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <style>{`.preloader{display:none}html.preload .preloader{display:flex}html.preload body{overflow:hidden}`}</style>
       </head>

@@ -5,19 +5,63 @@ import { site } from "@/content/site";
 
 type Status = "idle" | "sending" | "done" | "error";
 
+const T = {
+  ru: {
+    hello: "Здравствуйте! Хочу обсудить проект.",
+    me: (n: string) => `Меня зовут ${n}.`,
+    doneTitle: "Заявка у нас",
+    doneText: "Ответим в течение часа в рабочее время. Если срочно — напишите в WhatsApp.",
+    wa: "Написать в WhatsApp",
+    again: "Отправить ещё одну",
+    name: "Как вас зовут",
+    nameErr: "Напишите имя",
+    contact: "Телефон или @telegram",
+    contactErr: "Нужен номер или ник, чтобы ответить",
+    msg: "Пара слов о задаче — по желанию",
+    send: "Отправить заявку",
+    sending: "Отправляем…",
+    waShort: "или сразу в WhatsApp",
+    error: "{t.error}",
+    agree: "Отправляя форму, вы соглашаетесь с",
+    policy: "политикой конфиденциальности",
+  },
+  en: {
+    hello: "Hi! I'd like to discuss a project.",
+    me: (n: string) => `My name is ${n}.`,
+    doneTitle: "Got it, thank you",
+    doneText: "We'll reply within an hour during working hours. In a hurry? Message us on WhatsApp.",
+    wa: "Message on WhatsApp",
+    again: "Send another one",
+    name: "Your name",
+    nameErr: "Please enter your name",
+    contact: "Phone, @telegram or email",
+    contactErr: "We need a way to reply",
+    msg: "A few words about the project — optional",
+    send: "Send request",
+    sending: "Sending…",
+    waShort: "or message us on WhatsApp",
+    error: "Couldn't send. Please try again or message us on WhatsApp.",
+    agree: "By sending this form you agree to the",
+    policy: "privacy policy",
+  },
+};
+
 // Форма заявки. details — то, что человек уже выбрал выше (тип проекта, бюджет, смета),
 // оно уходит вместе с заявкой и подставляется в запасную ссылку на WhatsApp.
 export function LeadForm({
   details = "",
   source,
   compact = false,
-  submitLabel = "Отправить заявку",
+  submitLabel,
+  lang = "ru",
 }: {
   details?: string;
   source: string;
   compact?: boolean;
   submitLabel?: string;
+  lang?: "ru" | "en";
 }) {
+  const t = T[lang];
   const id = useId();
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
@@ -30,7 +74,7 @@ export function LeadForm({
   const contactOk = contact.replace(/[^\d@a-zA-Z]/g, "").length >= 5;
   const valid = nameOk && contactOk;
 
-  const waText = ["Здравствуйте! Хочу обсудить проект.", name && `Меня зовут ${name}.`, details, message].filter(Boolean).join("\n");
+  const waText = [t.hello, name && t.me(name), details, message].filter(Boolean).join("\n");
   const waHref = `${site.contacts.whatsapp.href}?text=${encodeURIComponent(waText)}`;
 
   const submit = async (e: React.FormEvent) => {
@@ -59,12 +103,12 @@ export function LeadForm({
           </svg>
         </span>
         <div>
-          <p className="font-display text-2xl font-semibold leading-tight [font-variation-settings:'wdth'_115] md:text-3xl">Заявка у нас</p>
-          <p className="mt-2 max-w-[40ch] text-muted">Ответим в течение часа в рабочее время. Если срочно — напишите в WhatsApp.</p>
+          <p className="font-display text-2xl font-semibold leading-tight [font-variation-settings:'wdth'_115] md:text-3xl">{t.doneTitle}</p>
+          <p className="mt-2 max-w-[40ch] text-muted">{t.doneText}</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <a href={waHref} target="_blank" rel="noreferrer" className="rounded-full border border-line-strong px-4 py-2.5 text-sm transition-colors hover:border-fg">
-            Написать в WhatsApp
+            {t.wa}
           </a>
           <button
             type="button"
@@ -75,7 +119,7 @@ export function LeadForm({
             }}
             className="rounded-full px-4 py-2.5 text-sm text-muted transition-colors hover:text-fg"
           >
-            Отправить ещё одну
+            {t.again}
           </button>
         </div>
       </div>
@@ -87,23 +131,23 @@ export function LeadForm({
       <div className={`grid gap-5 ${compact ? "" : "sm:grid-cols-2"}`}>
         <Field
           id={`${id}-name`}
-          label="Как вас зовут"
+          label={t.name}
           value={name}
           onChange={setName}
           autoComplete="name"
-          error={touched && !nameOk ? "Напишите имя" : ""}
+          error={touched && !nameOk ? t.nameErr : ""}
         />
         <Field
           id={`${id}-contact`}
-          label="Телефон или @telegram"
+          label={t.contact}
           value={contact}
           onChange={(v) => setContact(formatContact(v))}
           autoComplete="tel"
           inputMode={/^[@a-zA-Z]/.test(contact) ? "text" : "tel"}
-          error={touched && !contactOk ? "Нужен номер или ник, чтобы ответить" : ""}
+          error={touched && !contactOk ? t.contactErr : ""}
         />
       </div>
-      {!compact && <Field id={`${id}-msg`} label="Пара слов о задаче — по желанию" value={message} onChange={setMessage} multiline />}
+      {!compact && <Field id={`${id}-msg`} label={t.msg} value={message} onChange={setMessage} multiline />}
 
       {/* Ловушка для ботов: люди это поле не видят */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
@@ -120,24 +164,24 @@ export function LeadForm({
           data-magnetic="0.15"
           className="group relative inline-flex h-14 items-center gap-3 overflow-hidden rounded-full bg-fg pl-6 pr-2 font-medium text-bg transition-[background-color,opacity] duration-300 hover:bg-accent disabled:opacity-70"
         >
-          <span>{status === "sending" ? "Отправляем…" : submitLabel}</span>
+          <span>{status === "sending" ? t.sending : submitLabel ?? t.send}</span>
           <span className="grid h-10 w-10 place-items-center rounded-full bg-bg text-fg transition-transform duration-500 ease-[var(--ease-out)] group-hover:-rotate-45">
             {status === "sending" ? <span className="h-4 w-4 animate-spin rounded-full border-2 border-fg/30 border-t-fg" /> : "→"}
           </span>
         </button>
         <a href={waHref} target="_blank" rel="noreferrer" className="text-sm text-muted underline decoration-line-strong underline-offset-4 transition-colors hover:text-fg">
-          или сразу в WhatsApp
+          {t.waShort}
         </a>
       </div>
 
       <p id={`${id}-note`} className="font-mono text-[11px] leading-relaxed text-faint" role={status === "error" ? "alert" : undefined}>
         {status === "error" ? (
-          <span className="text-accent">Не получилось отправить. Попробуйте ещё раз или напишите в WhatsApp — там ответим быстрее.</span>
+          <span className="text-accent">{t.error}</span>
         ) : (
           <>
-            Отправляя форму, вы соглашаетесь с{" "}
+            {t.agree}{" "}
             <a href="/privacy" className="underline underline-offset-2 hover:text-fg">
-              политикой конфиденциальности
+              {t.policy}
             </a>
             .
           </>
