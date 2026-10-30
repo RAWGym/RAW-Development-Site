@@ -1,17 +1,44 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FooterLogo } from "./footer-logo";
 import { nav, site } from "@/content/site";
 import { scrollToTop } from "./smooth-scroll";
 
 export function Footer() {
   const { whatsapp, telegram, email } = site.contacts;
+  // На странице брифа бегущая строка «Обсудить проект» не нужна
+  const showCta = usePathname() !== "/start";
 
   return (
+    <>
+    {showCta && (
+    <Link
+      href="/start"
+      data-cursor="Начать"
+      className="group relative mt-auto block overflow-hidden border-t border-line py-8 md:py-12"
+      aria-label="Обсудить проект"
+    >
+      <div className="flex w-max animate-[ticker_32s_linear_infinite] group-hover:[animation-duration:14s]" aria-hidden="true">
+        {[0, 1].map((k) => (
+          <span key={k} className="flex shrink-0 items-center">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <span key={i} className="flex items-center">
+                <span className="cta-outline px-6 font-display text-[clamp(48px,9vw,148px)] font-semibold uppercase leading-none [font-variation-settings:'wdth'_125]">
+                  Обсудить проект
+                </span>
+                <span className="grid h-[0.9em] w-[0.9em] place-items-center font-display text-[clamp(32px,5vw,80px)] text-muted transition-transform duration-700 group-hover:rotate-90">✦</span>
+              </span>
+            ))}
+          </span>
+        ))}
+      </div>
+    </Link>
+    )}
     <footer
       data-section="contact"
-      className="relative mt-auto border-t border-line pb-16 pt-20 md:pb-24"
+      className={`relative ${showCta ? "" : "mt-auto "}border-t border-line pb-16 pt-20 md:pb-24`}
       style={{ paddingLeft: "var(--gutter)", paddingRight: "var(--gutter-r)" }}
     >
       <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-10 md:grid-cols-12 md:gap-6">
@@ -77,5 +104,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

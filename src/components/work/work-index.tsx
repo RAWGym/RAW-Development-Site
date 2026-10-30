@@ -78,7 +78,7 @@ function GridCard({ c, i }: { c: CaseStudy; i: number }) {
       className={`group block animate-[screenIn_.7s_var(--ease-out)_both] ${i % 2 === 1 ? "md:translate-y-24" : ""}`}
       style={{ animationDelay: `${i * 60}ms` }}
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border border-line">
+      <div data-tilt className="relative aspect-[4/3] overflow-hidden rounded-[28px] border border-line">
         <div className="absolute inset-0 transition-transform duration-[1200ms] ease-[var(--ease-out)] group-hover:scale-[1.04]">
           <CaseCover c={c} />
         </div>
