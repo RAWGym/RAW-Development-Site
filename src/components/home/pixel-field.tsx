@@ -44,6 +44,7 @@ export function PixelField() {
 
     const frame = () => {
       raf = 0;
+      const rgb = getComputedStyle(document.documentElement).getPropertyValue("--fg-rgb").trim().replace(/\s+/g, ",") || "237,235,231";
       ctx.clearRect(0, 0, c.width, c.height);
       let alive = false;
       const s = CELL * dpr;
@@ -51,7 +52,7 @@ export function PixelField() {
         const h = heat[i];
         if (h < 0.01) continue;
         alive = true;
-        ctx.fillStyle = `rgba(237,235,231,${h * 0.22})`;
+        ctx.fillStyle = `rgba(${rgb},${h * 0.22})`;
         const x = (i % cols) * s;
         const y = Math.floor(i / cols) * s;
         ctx.fillRect(x + dpr, y + dpr, s - dpr, s - dpr);

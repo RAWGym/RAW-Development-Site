@@ -7,6 +7,7 @@ import { Logo } from "./logo";
 import { setScrollLocked } from "./smooth-scroll";
 import { nav, site } from "@/content/site";
 import { PALETTE_EVENT } from "./command-palette";
+import { ThemeToggle } from "./theme-toggle";
 
 // Шапка: на старте — полная строка, при прокрутке сжимается в стеклянную капсулу.
 // Под пунктами меню ездит подсветка, кнопка прокручивает текст при наведении.
@@ -48,7 +49,7 @@ export function Header() {
         className={[
           "relative flex w-full items-center justify-between gap-6 border transition-[max-width,padding,background-color,border-color,border-radius] duration-700 ease-[var(--ease-out)]",
           compact && !open
-            ? "max-w-[940px] rounded-full border-line-strong bg-[var(--glass)] py-2 pl-5 pr-2 shadow-[0_10px_40px_-12px_rgb(0_0_0/0.7)] backdrop-blur-xl"
+            ? "max-w-[990px] rounded-full border-line-strong bg-[var(--glass)] py-2 pl-5 pr-2 shadow-[0_10px_40px_-12px_rgb(0_0_0/0.7)] backdrop-blur-xl"
             : "max-w-[1440px] rounded-none border-transparent bg-transparent px-0 py-3",
         ].join(" ")}
       >
@@ -76,6 +77,7 @@ export function Header() {
             </span>
             {site.status}
           </span>
+          <ThemeToggle />
           <button
             type="button"
             onClick={() => window.dispatchEvent(new Event(PALETTE_EVENT))}

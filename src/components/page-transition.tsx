@@ -42,8 +42,9 @@ export function PageTransition() {
     const ctx = c?.getContext("2d");
     if (!c || !ctx) return;
     const s = state.current;
-    const fg = "#edebe7";
-    const bg = "#0b0b0c";
+    const css = getComputedStyle(document.documentElement);
+    const fg = css.getPropertyValue("--fg").trim() || "#edebe7";
+    const bg = css.getPropertyValue("--bg").trim() || "#0b0b0c";
     ctx.clearRect(0, 0, c.width, c.height);
     const n = Math.floor(s.order.length * k);
     const dpr = c.width / window.innerWidth;

@@ -26,7 +26,7 @@ export function Personal() {
           }
         />
 
-        <div className="relative grid gap-4 rounded-[32px] border border-line bg-[radial-gradient(120%_120%_at_20%_0%,#1a1a1e,#0b0b0c_60%)] p-4 sm:grid-cols-2 md:block md:h-[620px] md:p-0">
+        <div className="relative grid gap-4 rounded-[32px] border border-line bg-[radial-gradient(120%_120%_at_20%_0%,var(--bg-raised),var(--bg)_60%)] p-4 sm:grid-cols-2 md:block md:h-[620px] md:p-0">
           <Draggable x={4} y={8} w={300}>
             <HabitWidget />
           </Draggable>

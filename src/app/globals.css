@@ -6,6 +6,8 @@
   тогда достаточно поменять --accent.
 */
 :root {
+  --fg-rgb: 237 235 231;
+  --bg-rgb: 11 11 12;
   --bg: #0b0b0c;
   --bg-raised: #131315;
   --fg: #edebe7;
@@ -27,6 +29,40 @@
   --gutter-r: max(16px, env(safe-area-inset-right, 0px));
 
   color-scheme: dark;
+}
+
+/* Светлая тема: тёплая бумага вместо графита, медь чуть темнее ради контраста */
+:root[data-theme="light"] {
+  --fg-rgb: 22 21 20;
+  --bg-rgb: 243 241 236;
+  --bg: #f3f1ec;
+  --bg-raised: #e9e6df;
+  --fg: #161514;
+  --muted: #5f5c57;
+  --faint: #6f6c66;
+  --line: rgb(22 21 20 / 0.1);
+  --line-strong: rgb(22 21 20 / 0.2);
+  --glass: rgb(243 241 236 / 0.72);
+  --accent: #b5582a;
+  --accent-soft: rgb(181 88 42 / 0.12);
+  color-scheme: light;
+}
+:root[data-theme="light"] .grain {
+  opacity: 0.035;
+}
+
+/* Смена темы: новая тема раскрывается кругом от кнопки */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0%));
+  animation: themeReveal 0.7s var(--ease-out) forwards;
+}
+@keyframes themeReveal {
+  to { clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 50%) var(--vt-y, 0%)); }
 }
 
 @theme inline {
