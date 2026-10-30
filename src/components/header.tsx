@@ -171,6 +171,7 @@ export function RollButton({ href, children, className = "" }: { href: string; c
   return (
     <Link
       href={href}
+      data-magnetic="0.2"
       className={`group relative shrink-0 items-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-fg py-2 pl-4 pr-2 text-[13px] font-medium text-bg ${className}`}
     >
       <span className="relative block h-[1.3em] overflow-hidden leading-[1.3em]">

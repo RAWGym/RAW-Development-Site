@@ -10,6 +10,8 @@ import { GridOverlay } from "@/components/grid-overlay";
 import { Preloader } from "@/components/preloader";
 import { CommandPalette } from "@/components/command-palette";
 import { EasterEggs } from "@/components/easter-eggs";
+import { PageTransition } from "@/components/page-transition";
+import { Magnetic } from "@/components/magnetic";
 import { siteUrl } from "@/content/site";
 
 // Шрифты: открытая лицензия OFL, с кириллицей. Временные — до покупки лицензий.
@@ -97,6 +99,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <GridOverlay />
         <CommandPalette />
         <EasterEggs />
+        <PageTransition />
+        <Magnetic />
         <Cursor />
         <div className="grain" aria-hidden="true" />
       </body>

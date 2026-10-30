@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { allCases, getCase } from "@/content/cases";
 import { CaseCover } from "@/components/case-cover";
 import { Reveal } from "@/components/reveal";
+import { RiseLines } from "@/components/rise-lines";
+import { CaseScreens } from "@/components/work/case-screens";
 import { ParallaxCover } from "@/components/work/parallax-cover";
 
 export function generateStaticParams() {
@@ -46,7 +48,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
             <span className="label">{c.audience === "business" ? "Для бизнеса" : "Для себя"}</span>
           </div>
           <h1 className="font-display text-[clamp(36px,8vw,160px)] font-semibold uppercase leading-[0.88] [overflow-wrap:anywhere] [font-variation-settings:'wdth'_100] md:[font-variation-settings:'wdth'_115]">
-            {c.title}
+            <RiseLines>{c.title}</RiseLines>
           </h1>
           <div className="mt-10 grid gap-10 md:grid-cols-12">
             <p className="text-lg leading-relaxed md:col-span-6 md:text-2xl md:leading-snug">{c.summary}</p>
@@ -114,6 +116,14 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Экраны */}
+      <section className="border-t border-line py-24 md:py-32" style={pad} data-section="экраны">
+        <div className="mx-auto max-w-[1440px]">
+          <h2 className="label mb-12 block">[03.1] — Экраны</h2>
+          <CaseScreens c={c} />
         </div>
       </section>
 
