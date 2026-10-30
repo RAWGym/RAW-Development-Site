@@ -8,6 +8,8 @@ import { SmoothScroll } from "@/components/smooth-scroll";
 import { Cursor } from "@/components/cursor";
 import { GridOverlay } from "@/components/grid-overlay";
 import { Preloader } from "@/components/preloader";
+import { CommandPalette } from "@/components/command-palette";
+import { EasterEggs } from "@/components/easter-eggs";
 
 // Шрифты: открытая лицензия OFL, с кириллицей. Временные — до покупки лицензий.
 const display = Science_Gothic({
@@ -67,6 +69,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Footer />
         <StatusBar />
         <GridOverlay />
+        <CommandPalette />
+        <EasterEggs />
         <Cursor />
         <div className="grain" aria-hidden="true" />
       </body>
