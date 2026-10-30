@@ -131,3 +131,44 @@ html.lenis body {
   from { transform: scaleY(0.3); }
   to { transform: scaleY(1); }
 }
+
+/* Заголовки страниц поднимаются строка за строкой */
+@keyframes rise {
+  from { transform: translateY(105%) rotate(2deg); }
+  to { transform: none; }
+}
+.rise {
+  animation: rise 1s var(--ease-out) both;
+  transform-origin: left bottom;
+}
+html.preload .rise {
+  animation-play-state: paused;
+}
+
+/* Тонкий скроллбар в цвет сайта */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) var(--bg);
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Подсветка ссылки при переходе с клавиатуры */
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid var(--fg);
+  outline-offset: 3px;
+  border-radius: 999px;
+}

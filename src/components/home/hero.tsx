@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { ScrambleWord } from "@/components/scramble-word";
+import { PixelField } from "./pixel-field";
 import { AudienceSwitch, useAudience } from "@/components/audience";
 import { site } from "@/content/site";
 
@@ -42,6 +43,7 @@ export function Hero() {
       style={{ paddingLeft: "var(--gutter)", paddingRight: "var(--gutter-r)" }}
     >
       <div ref={spot} className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <PixelField />
         <div
           className="absolute inset-0 opacity-50"
           style={{
@@ -87,13 +89,15 @@ export function Hero() {
           <div className="flex flex-wrap gap-3 md:col-span-5 md:col-start-8 md:justify-end">
             <Link
               href="/start"
-              className="rounded-full bg-fg px-6 py-3.5 text-sm font-medium text-bg transition-transform duration-200 hover:scale-[1.03]"
+              data-magnetic="0.3"
+              className="rounded-full bg-fg px-6 py-3.5 text-sm font-medium text-bg"
             >
               Обсудить проект
             </Link>
             <Link
               href="#work"
               data-cursor="Смотреть"
+              data-magnetic="0.3"
               className="rounded-full border border-line-strong px-6 py-3.5 text-sm transition-colors duration-200 hover:border-fg"
             >
               Смотреть кейсы
