@@ -72,6 +72,7 @@ export function Footer() {
         <div className="mt-6 flex flex-wrap justify-between gap-3 font-mono text-[10px] tracking-wider text-muted">
           <span>© 2018–2026 RAW Development</span>
           <span>{site.yearsOfExperience}+ лет в разработке</span>
+          <a href="/privacy" className="transition-colors hover:text-fg">Конфиденциальность</a>
           <span>Сделано вручную, до пикселя</span>
         </div>
       </div>
