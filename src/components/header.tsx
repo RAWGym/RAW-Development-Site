@@ -41,7 +41,7 @@ export function Header() {
       >
         <Link href="/" aria-label="RAW Development — на главную" className="shrink-0">
           <Logo
-            className={`h-auto text-fg transition-all duration-700 ease-[var(--ease-out)] ${compact ? "w-[52px]" : "w-[72px]"}`}
+            className={`h-auto text-fg transition-all duration-700 ease-[var(--ease-out)] ${compact ? "w-[64px]" : "w-[88px]"}`}
           />
         </Link>
 

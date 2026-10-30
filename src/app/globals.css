@@ -118,3 +118,16 @@ html.lenis body {
     transition-duration: 1ms !important;
   }
 }
+
+@keyframes browse {
+  0%, 10% { transform: translateY(0); }
+  90%, 100% { transform: translateY(-45%); }
+}
+@keyframes screenIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes eq {
+  from { transform: scaleY(0.3); }
+  to { transform: scaleY(1); }
+}

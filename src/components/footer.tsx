@@ -68,7 +68,7 @@ export function Footer() {
       </div>
 
       <div className="mx-auto mt-20 max-w-[1440px]">
-        <Logo className="h-auto w-full text-fg" />
+        <Logo className="block w-full text-fg" />
         <div className="mt-6 flex flex-wrap justify-between gap-3 font-mono text-[10px] tracking-wider text-muted">
           <span>© 2018–2026 RAW Development</span>
           <span>{site.yearsOfExperience}+ лет в разработке</span>
