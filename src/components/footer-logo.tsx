@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { LOGO_GRID, PIXELS } from "./logo";
+import { LOGO_GRID, PIXELS } from "./pixel-font";
 
 // Большое пиксельное «RAW» в подвале. Пиксели рядом с курсором приподнимаются
 // и вспыхивают, остальные спокойно светятся точечной матрицей.

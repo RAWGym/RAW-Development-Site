@@ -33,7 +33,7 @@ export function Process() {
       gsap.utils.toArray<HTMLElement>(".step").forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0.25 },
+          { opacity: 0.86 },
           { opacity: 1, duration: 0.4, scrollTrigger: { trigger: el, start: "top 65%", toggleActions: "play none none reverse" } },
         );
       });

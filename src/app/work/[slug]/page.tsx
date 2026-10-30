@@ -50,15 +50,17 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
           </h1>
           <div className="mt-10 grid gap-10 md:grid-cols-12">
             <p className="text-lg leading-relaxed md:col-span-6 md:text-2xl md:leading-snug">{c.summary}</p>
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-6 md:col-span-5 md:col-start-8">
+            <div className="md:col-span-5 md:col-start-8">
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-6">
               {meta.map((m) => (
                 <div key={m.k} className="border-t border-line pt-3">
                   <dt className="label mb-2">{m.k}</dt>
                   <dd className="text-sm">{m.v}</dd>
                 </div>
               ))}
+            </dl>
               {c.url && (
-                <div className="col-span-2">
+                <div className="mt-6">
                   <a
                     href={c.url}
                     target="_blank"
@@ -69,7 +71,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
                   </a>
                 </div>
               )}
-            </dl>
+            </div>
           </div>
         </div>
       </header>
@@ -87,11 +89,11 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       <section className="py-24 md:py-36" style={pad} data-section="задача">
         <div className="mx-auto grid max-w-[1440px] gap-16 md:grid-cols-12">
           <Reveal className="md:col-span-5">
-            <span className="label mb-6 block">[01] — Задача</span>
+            <h2 className="label mb-6 block">[01] — Задача</h2>
             <p className="text-lg leading-relaxed text-muted md:text-xl">{c.challenge}</p>
           </Reveal>
           <Reveal className="md:col-span-6 md:col-start-7" delay={0.1}>
-            <span className="label mb-6 block">[02] — Решение</span>
+            <h2 className="label mb-6 block">[02] — Решение</h2>
             <p className="text-lg leading-relaxed md:text-xl">{c.solution}</p>
           </Reveal>
         </div>
@@ -100,7 +102,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       {/* Возможности */}
       <section className="border-t border-line py-24 md:py-32" style={pad} data-section="возможности">
         <div className="mx-auto max-w-[1440px]">
-          <span className="label mb-12 block">[03] — Что внутри</span>
+          <h2 className="label mb-12 block">[03] — Что внутри</h2>
           <div className="grid gap-px overflow-hidden rounded-[28px] border border-line bg-line sm:grid-cols-2">
             {c.features.map((f, i) => (
               <Reveal key={f.title} delay={i * 0.06} className="flex min-h-[220px] flex-col justify-between gap-10 bg-bg p-7 md:p-10">
@@ -118,7 +120,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       {/* Результаты */}
       <section className="border-t border-line py-24 md:py-32" style={pad} data-section="результат">
         <div className="mx-auto max-w-[1440px]">
-          <span className="label mb-12 block">[04] — Результат</span>
+          <h2 className="label mb-12 block">[04] — Результат</h2>
           <div className="grid gap-12 md:grid-cols-3">
             {c.results.map((r, i) => (
               <Reveal key={r.label} delay={i * 0.08} className={i > 0 ? "md:border-l md:border-line md:pl-8" : ""}>
@@ -134,7 +136,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       <section className="border-t border-line py-24 md:py-32" style={pad} data-section="стек">
         <div className="mx-auto grid max-w-[1440px] gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
-            <span className="label mb-8 block">[05] — Стек</span>
+            <h2 className="label mb-8 block">[05] — Стек</h2>
             <ul className="flex flex-wrap gap-2">
               {c.stack.map((s) => (
                 <li key={s} className="rounded-full border border-line-strong px-4 py-2 font-mono text-[12px]">
@@ -144,7 +146,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
             </ul>
           </div>
           <div className="md:col-span-6 md:col-start-7">
-            <span className="label mb-8 block">[06] — Детали, о которых не просили</span>
+            <h2 className="label mb-8 block">[06] — Детали, о которых не просили</h2>
             <ul className="divide-y divide-line border-y border-line">
               {c.details.map((d) => (
                 <li key={d} className="flex items-center gap-4 py-4">

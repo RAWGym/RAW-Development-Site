@@ -57,7 +57,7 @@ export default function AboutPage() {
 
       <section className="py-24 md:py-36" style={pagePad} data-section="принципы">
         <div className="mx-auto max-w-[1440px]">
-          <span className="label mb-12 block">[Принципы]</span>
+          <h2 className="label mb-12 block">[Принципы]</h2>
           <div className="grid gap-x-8 gap-y-16 md:grid-cols-2">
             {PRINCIPLES.map((p, i) => (
               <Reveal key={p.t} delay={(i % 2) * 0.08} className="border-t border-line pt-6">
@@ -72,7 +72,7 @@ export default function AboutPage() {
 
       <section className="border-t border-line py-24 md:py-32" style={pagePad} data-section="история">
         <div className="mx-auto max-w-[1440px]">
-          <span className="label mb-12 block">[История]</span>
+          <h2 className="label mb-12 block">[История]</h2>
           <ol className="border-t border-line">
             {TIMELINE.map((e) => (
               <li key={e.y} className="group grid grid-cols-[88px_1fr] items-baseline gap-6 border-b border-line py-6 md:grid-cols-[200px_1fr]">
@@ -87,7 +87,7 @@ export default function AboutPage() {
       <section className="border-t border-line py-24 md:py-32" style={pagePad} data-section="команда">
         <div className="mx-auto grid max-w-[1440px] gap-16 md:grid-cols-12">
           <div className="md:col-span-6">
-            <span className="label mb-8 block">[Команда]</span>
+            <h2 className="label mb-8 block">[Команда]</h2>
             <ul className="border-t border-line">
               {TEAM.map((m) => (
                 <li key={m.r} className="flex flex-col gap-1 border-b border-line py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
@@ -98,7 +98,7 @@ export default function AboutPage() {
             </ul>
           </div>
           <div className="md:col-span-5 md:col-start-8">
-            <span className="label mb-8 block">[Стек]</span>
+            <h2 className="label mb-8 block">[Стек]</h2>
             <ul className="flex flex-wrap gap-2">
               {STACK.map((s) => (
                 <li key={s} className="rounded-full border border-line-strong px-4 py-2 font-mono text-[12px] transition-colors hover:bg-fg hover:text-bg">

@@ -41,7 +41,7 @@ export default function ProcessPage() {
 
       <section className="border-t border-line py-24 md:py-32" style={pagePad} data-section="ритм">
         <div className="mx-auto max-w-[1440px]">
-          <span className="label mb-12 block">[Ритм работы]</span>
+          <h2 className="label mb-12 block">[Ритм работы]</h2>
           <div className="grid gap-px overflow-hidden rounded-[24px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {RITUALS.map((r, i) => (
               <Reveal key={r.t} delay={i * 0.06} className="flex min-h-[220px] flex-col justify-between bg-bg p-7">
@@ -60,7 +60,7 @@ export default function ProcessPage() {
 
       <section className="border-t border-line py-24 md:py-32" style={pagePad} data-section="гарантии">
         <div className="mx-auto max-w-[1440px]">
-          <span className="label mb-12 block">[Гарантии]</span>
+          <h2 className="label mb-12 block">[Гарантии]</h2>
           <div className="grid gap-12 md:grid-cols-4">
             {PROMISES.map((p, i) => (
               <Reveal key={p.t} delay={i * 0.06} className={i > 0 ? "md:border-l md:border-line md:pl-8" : ""}>

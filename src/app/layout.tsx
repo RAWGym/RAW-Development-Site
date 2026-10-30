@@ -10,6 +10,7 @@ import { GridOverlay } from "@/components/grid-overlay";
 import { Preloader } from "@/components/preloader";
 import { CommandPalette } from "@/components/command-palette";
 import { EasterEggs } from "@/components/easter-eggs";
+import { siteUrl } from "@/content/site";
 
 // Шрифты: открытая лицензия OFL, с кириллицей. Временные — до покупки лицензий.
 const display = Science_Gothic({
@@ -40,6 +41,30 @@ export const metadata: Metadata = {
   },
   description:
     "Студия разработки RAW Development: сайты, мобильные приложения, Telegram-боты и Mini Apps, игры и медиа-продукты для бизнеса и для себя. 8+ лет опыта.",
+  metadataBase: new URL(siteUrl),
+  alternates: { canonical: "./" },
+  applicationName: "RAW Development",
+  openGraph: {
+    type: "website",
+    locale: "ru_RU",
+    siteName: "RAW Development",
+    url: "./",
+  },
+  twitter: { card: "summary_large_image" },
+  formatDetection: { telephone: false },
+};
+
+// Разметка организации для поисковиков.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "RAW Development",
+  url: siteUrl,
+  telephone: "+77066569389",
+  areaServed: "KZ",
+  address: { "@type": "PostalAddress", addressLocality: "Алматы", addressCountry: "KZ" },
+  foundingDate: "2018",
+  description: "Разработка сайтов, мобильных приложений, Telegram-ботов и Mini Apps.",
 };
 
 export const viewport: Viewport = {
@@ -59,6 +84,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: preloadScript }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <style>{`.preloader{display:none}html.preload .preloader{display:flex}html.preload body{overflow:hidden}`}</style>
       </head>
       <body className="flex min-h-full flex-col">
