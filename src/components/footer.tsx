@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FooterLogo } from "./footer-logo";
-import { nav, site } from "@/content/site";
+import { extraPages, nav, site } from "@/content/site";
 import { scrollToTop } from "./smooth-scroll";
 
 export function Footer() {
   const { whatsapp, telegram, email } = site.contacts;
-  // Там, где уже есть форма заявки, бегущая строка «Обсудить проект» не нужна
-  const showCta = !["/", "/start", "/contact"].includes(usePathname());
+    // Бегущая строка — только там, где нет своей формы или призыва внизу страницы
+  const path = usePathname();
+  const showCta = path.startsWith("/work") || path === "/privacy";
 
   return (
     <>
@@ -76,7 +77,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-3 md:col-span-2">
           <span className="label">Разделы</span>
-          {nav.map((item) => (
+          {[...nav, ...extraPages.filter((p) => p.href !== "/start")].map((item) => (
             <Link key={item.href} href={item.href} className="text-fg/90 transition-colors hover:text-fg">
               {item.label}
             </Link>

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { allCases } from "@/content/cases";
 import { services } from "@/content/services";
-import { nav, site } from "@/content/site";
+import { extraPages, nav, site } from "@/content/site";
 import { setScrollLocked } from "./smooth-scroll";
 
 type Item = { id: string; group: string; label: string; hint?: string; run: () => void };
@@ -26,6 +26,7 @@ export function CommandPalette() {
     return [
       { id: "home", group: "Страницы", label: "Главная", run: go("/") },
       ...nav.map((n) => ({ id: n.href, group: "Страницы", label: n.label, run: go(n.href) })),
+      ...extraPages.filter((n) => n.href !== "/start").map((n) => ({ id: n.href, group: "Страницы", label: n.label, run: go(n.href) })),
       { id: "start", group: "Страницы", label: "Рассчитать проект", hint: "калькулятор", run: go("/start") },
       ...allCases.map((c) => ({ id: c.slug, group: "Кейсы", label: c.title, hint: c.kind, run: go(`/work/${c.slug}`) })),
       ...services.map((s) => ({ id: `svc-${s.id}`, group: "Услуги", label: s.title, hint: s.price, run: go(`/services#${s.id}`) })),

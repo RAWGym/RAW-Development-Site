@@ -35,3 +35,10 @@ export const nav = [
   { href: "/about", label: "О студии" },
   { href: "/contact", label: "Контакты" },
 ] as const;
+
+// Страницы, которых нет в шапке: футер и ⌘K
+export const extraPages = [
+  { href: "/stack", label: "Стек" },
+  { href: "/notes", label: "Заметки" },
+  { href: "/start", label: "Калькулятор" },
+] as const;
