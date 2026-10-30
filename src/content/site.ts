@@ -16,7 +16,7 @@ export const site = {
   },
   status: "Принимаем проекты на декабрь",
   // Виджет «Свободные слоты»: сколько проектов берём в месяц и сколько мест осталось
-  slots: { month: "декабрь", total: 4, free: 1 },
+  slots: { month: "декабрь", monthEn: "December", total: 4, free: 1 },
   contacts: {
     whatsapp: {
       label: "+7 706 656 93 89",
