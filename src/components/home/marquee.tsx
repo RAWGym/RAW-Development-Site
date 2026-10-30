@@ -41,8 +41,24 @@ export function Marquee() {
       boost = Math.min(18, Math.abs(dy) * 0.4);
     };
 
+    // Ширину ленты меряем только при изменении размеров, а не в каждом кадре:
+    // чтение scrollWidth в цикле заставляет браузер пересчитывать раскладку.
+    let half = el.scrollWidth / 2;
+    const ro = new ResizeObserver(() => (half = el.scrollWidth / 2));
+    ro.observe(el);
+    // Вне экрана лента не анимируется.
+    let visible = true;
+    const io = new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible && !raf && !reduced) raf = requestAnimationFrame(loop);
+    });
+    io.observe(el);
+
     const loop = () => {
-      const half = el.scrollWidth / 2;
+      if (!visible) {
+        raf = 0;
+        return;
+      }
       x -= (0.6 + boost) * dir;
       boost *= 0.92;
       if (x <= -half) x += half;
@@ -58,6 +74,8 @@ export function Marquee() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(raf);
+      ro.disconnect();
+      io.disconnect();
     };
   }, []);
 

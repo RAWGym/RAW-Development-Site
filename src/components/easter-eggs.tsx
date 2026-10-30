@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { PIXELS, LOGO_GRID } from "./logo";
+import { PIXELS, LOGO_GRID } from "./pixel-font";
 
 const KONAMI = ["arrowup", "arrowup", "arrowdown", "arrowdown", "arrowleft", "arrowright", "arrowleft", "arrowright", "b", "a"];
 

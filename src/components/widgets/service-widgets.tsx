@@ -2,6 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 
+// true, пока элемент на экране: виджеты не тратят процессор, когда их не видно.
+function useInView<T extends Element>() {
+  const ref = useRef<T>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return [ref, inView] as const;
+}
+
 /* ---------- Сайты: мини-браузер, в котором листается лендинг ---------- */
 export function BrowserWidget() {
   return (
@@ -257,13 +271,15 @@ export function GameWidget() {
 /* ---------- Медиа и ТВ: экран телевизора и прошивка ---------- */
 export function TvWidget() {
   const [p, setP] = useState(0);
+  const [ref, inView] = useInView<HTMLDivElement>();
   useEffect(() => {
+    if (!inView) return;
     const id = window.setInterval(() => setP((v) => (v >= 100 ? 0 : v + 2)), 120);
     return () => window.clearInterval(id);
-  }, []);
+  }, [inView]);
   const done = p >= 100;
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-3">
+    <div ref={ref} className="flex h-full flex-col items-center justify-center gap-3">
       <div className="relative aspect-video w-full max-w-[260px] overflow-hidden rounded-lg border-4 border-fg/15 bg-bg">
         <div className="absolute inset-0 grid place-items-center">
           {done ? (

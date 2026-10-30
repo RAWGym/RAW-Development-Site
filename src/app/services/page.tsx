@@ -40,7 +40,7 @@ export default function ServicesPage() {
 
       <section className="border-t border-line py-24 md:py-32" style={pagePad} data-section="форматы">
         <div className="mx-auto max-w-[1440px]">
-          <span className="label mb-12 block">[Форматы работы]</span>
+          <h2 className="label mb-12 block">[Форматы работы]</h2>
           <div className="grid gap-4 md:grid-cols-3">
             {MODELS.map((m, i) => (
               <Reveal key={m.t} delay={i * 0.08} className="flex min-h-[260px] flex-col justify-between rounded-[24px] border border-line bg-bg-raised p-7">
@@ -58,7 +58,7 @@ export default function ServicesPage() {
       <section className="border-t border-line py-24 md:py-32" style={pagePad} data-section="вопросы">
         <div className="mx-auto grid max-w-[1440px] gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <span className="label mb-6 block">[FAQ]</span>
+            <h2 className="label mb-6 block">[FAQ]</h2>
             <h2 className="font-display text-[clamp(30px,4vw,64px)] font-semibold uppercase leading-[0.95] [font-variation-settings:'wdth'_115]">Частые вопросы</h2>
           </div>
           <div className="md:col-span-8">

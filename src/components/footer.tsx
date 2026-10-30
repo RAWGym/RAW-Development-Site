@@ -29,9 +29,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 md:col-span-3 md:col-start-7">
+        <div className="col-span-2 flex flex-col gap-3 sm:col-span-1 md:col-span-3 md:col-start-7">
           <span className="label">Контакты</span>
-          <a href={whatsapp.href} target="_blank" rel="noreferrer" className="text-fg/90 transition-colors hover:text-fg">
+          <a href={whatsapp.href} target="_blank" rel="noreferrer" className="whitespace-nowrap text-fg/90 transition-colors hover:text-fg">
             WhatsApp {whatsapp.label}
           </a>
           {telegram && (

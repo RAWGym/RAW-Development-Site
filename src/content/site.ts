@@ -1,5 +1,8 @@
 // Данные студии в одном месте. Всё, что помечено TODO, — заглушки до реальных данных.
 
+// Адрес сайта: пока поддомен Vercel, при переезде на свой домен задать NEXT_PUBLIC_SITE_URL.
+export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://rawdevelopment.vercel.app").replace(/\/$/, "");
+
 export const site = {
   name: "RAW Development",
   tagline: "From raw idea to pixel-perfect product",

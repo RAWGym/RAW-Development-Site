@@ -50,25 +50,25 @@ function Flip({ value }: { value: string }) {
   return (
     <div
       ref={ref}
-      className="flex font-display text-[clamp(48px,7vw,112px)] font-semibold leading-none tabular-nums [font-variation-settings:'wdth'_115]"
-      aria-label={value}
+      className="flex font-display text-[clamp(44px,5vw,96px)] font-semibold leading-none tabular-nums [font-variation-settings:'wdth'_105]"
     >
+      <span className="sr-only">{value}</span>
       {value.split("").map((ch, i) => {
         const digit = /\d/.test(ch) ? Number(ch) : null;
-        if (digit === null) return <span key={i} aria-hidden="true">{ch}</span>;
+        if (digit === null) return <span key={i} className="shrink-0 leading-[1.12em]" aria-hidden="true">{ch}</span>;
         return (
-          <span key={i} className="relative inline-block h-[1em] overflow-hidden" aria-hidden="true">
+          <span key={i} className="relative inline-block h-[1.12em] shrink-0 overflow-hidden" aria-hidden="true">
             {/* Невидимая цифра задаёт ширину ячейки */}
-            <span className="invisible">{ch}</span>
+            <span className="invisible block h-[1.12em] leading-[1.12em]">{ch}</span>
             <span
               className="absolute inset-x-0 top-0 flex flex-col items-center"
               style={{
-                transform: on ? `translateY(-${digit}em)` : "translateY(0)",
+                transform: on ? `translateY(-${digit * 1.12}em)` : "translateY(0)",
                 transition: `transform 1.6s cubic-bezier(.22,1,.36,1) ${i * 0.12}s`,
               }}
             >
               {Array.from({ length: 10 }).map((_, n) => (
-                <span key={n} className="block h-[1em] leading-none">
+                <span key={n} className="block h-[1.12em] leading-[1.12em]">
                   {n}
                 </span>
               ))}
