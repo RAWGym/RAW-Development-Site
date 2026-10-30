@@ -1,0 +1,80 @@
+"use client";
+
+import Link from "next/link";
+import { Logo } from "./logo";
+import { nav, site } from "@/content/site";
+import { scrollToTop } from "./smooth-scroll";
+
+export function Footer() {
+  const { whatsapp, telegram, email } = site.contacts;
+
+  return (
+    <footer
+      data-section="contact"
+      className="relative mt-auto border-t border-line pb-16 pt-20 md:pb-24"
+      style={{ paddingLeft: "var(--gutter)", paddingRight: "var(--gutter-r)" }}
+    >
+      <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-10 md:grid-cols-12 md:gap-6">
+        <div className="col-span-2 flex flex-col gap-4 md:col-span-5">
+          <span className="label">[∞] — Связаться</span>
+          <p className="max-w-[28ch] font-display text-3xl leading-[1.05] md:text-4xl" style={{ fontVariationSettings: "'wdth' 120" }}>
+            Есть идея? Давайте соберём её.
+          </p>
+          <div className="flex items-center gap-2 font-mono text-[11px] text-muted">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-fg opacity-40" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-fg" />
+            </span>
+            {site.status}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3 md:col-span-3 md:col-start-7">
+          <span className="label">Контакты</span>
+          <a href={whatsapp.href} target="_blank" rel="noreferrer" className="text-fg/90 transition-colors hover:text-fg">
+            WhatsApp {whatsapp.label}
+          </a>
+          {telegram && (
+            <a href={telegram.href} target="_blank" rel="noreferrer" className="text-fg/90 hover:text-fg">
+              Telegram {telegram.label}
+            </a>
+          )}
+          {email && (
+            <a href={`mailto:${email}`} className="text-fg/90 hover:text-fg">
+              {email}
+            </a>
+          )}
+          <span className="text-muted">{site.city}</span>
+        </div>
+
+        <div className="flex flex-col gap-3 md:col-span-2">
+          <span className="label">Разделы</span>
+          {nav.map((item) => (
+            <Link key={item.href} href={item.href} className="text-fg/90 transition-colors hover:text-fg">
+              {item.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="col-span-2 flex items-start justify-end md:col-span-1">
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="label rounded-full border border-line-strong px-3 py-2 transition-colors hover:border-fg hover:text-fg"
+          >
+            Наверх ↑
+          </button>
+        </div>
+      </div>
+
+      <div className="mx-auto mt-20 max-w-[1440px]">
+        <Logo className="h-auto w-full text-fg" />
+        <div className="mt-6 flex flex-wrap justify-between gap-3 font-mono text-[10px] tracking-wider text-muted">
+          <span>© 2018–2026 RAW Development</span>
+          <span>{site.yearsOfExperience}+ лет в разработке</span>
+          <span>Сделано вручную, до пикселя</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
