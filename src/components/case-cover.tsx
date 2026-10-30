@@ -89,6 +89,66 @@ function Mock({ slug, ink }: { slug: string; ink: string }) {
       </div>
     );
   }
+  if (slug === "habit-tracker") {
+    return (
+      <div className="absolute right-[8%] top-[14%] flex w-[46%] justify-between">
+        {[0.9, 0.55, 0.75].map((p, i) => (
+          <svg key={i} viewBox="0 0 44 44" className="w-[30%] -rotate-90">
+            <circle cx="22" cy="22" r="18" fill="none" stroke={`${ink}26`} strokeWidth="5" />
+            <circle cx="22" cy="22" r="18" fill="none" stroke={ink} strokeWidth="5" strokeLinecap="round" strokeDasharray={113} strokeDashoffset={113 * (1 - p)} />
+          </svg>
+        ))}
+      </div>
+    );
+  }
+  if (slug === "game") {
+    return (
+      <div className="absolute right-[8%] top-[12%] w-[44%]">
+        <div className="grid grid-cols-8 gap-1">
+          {Array.from({ length: 32 }).map((_, i) => (
+            <span key={i} className="h-3 rounded-[2px]" style={{ background: [3, 9, 14, 20, 27].includes(i) ? "transparent" : `${ink}${i < 8 ? "cc" : i < 16 ? "80" : "40"}` }} />
+          ))}
+        </div>
+        <span className="mx-auto mt-10 block h-3 w-3 rounded-full" style={{ background: ink }} />
+        <span className="mx-auto mt-6 block h-2 w-1/4 rounded-full" style={{ background: ink }} />
+      </div>
+    );
+  }
+  if (slug === "music-player") {
+    return (
+      <div className="absolute right-[8%] top-[12%] w-[42%]">
+        <div className="mx-auto aspect-square w-1/2 rounded-full border-[10px]" style={{ borderColor: `${ink}33`, background: `radial-gradient(circle, ${ink} 0 8%, ${ink}1a 9% 100%)` }} />
+        <div className="mt-5 flex h-10 items-end gap-[3px]">
+          {Array.from({ length: 28 }).map((_, i) => (
+            <span key={i} className="flex-1 rounded-sm" style={{ height: `${20 + ((i * 37) % 75)}%`, background: `${ink}99` }} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+  if (slug === "movie-player") {
+    return (
+      <div className="absolute right-[6%] top-[14%] flex w-[52%] gap-2">
+        {[1, 0.7, 0.5, 0.35].map((o, i) => (
+          <div key={i} className="aspect-[2/3] flex-1 rounded-md border" style={{ borderColor: `${ink}33`, background: `linear-gradient(180deg, ${ink}${Math.round(o * 60).toString(16).padStart(2, "0")}, transparent)` }} />
+        ))}
+      </div>
+    );
+  }
+  if (slug === "tv-firmware") {
+    return (
+      <div className="absolute right-[8%] top-[12%] w-[46%]">
+        <div className="aspect-video rounded-lg border-2 p-2" style={{ borderColor: `${ink}66` }}>
+          <div className="grid h-full grid-cols-4 gap-1.5">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <span key={i} className="rounded" style={{ background: i === 1 ? ink : `${ink}26` }} />
+            ))}
+          </div>
+        </div>
+        <div className="mx-auto mt-1 h-1.5 w-1/4 rounded-b" style={{ background: `${ink}66` }} />
+      </div>
+    );
+  }
   // банк: карта и баланс
   return (
     <div className="absolute right-[8%] top-[12%] w-[40%]">
