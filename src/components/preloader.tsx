@@ -46,7 +46,12 @@ export function Preloader() {
         setLines(LINES.slice(0, Math.min(LINES.length, Math.floor(v / 20) + 1)));
       },
     })
-      .fromTo(".preload-logo", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.6, ease: "power3.out" }, 0.5)
+      .fromTo(
+        ".preload-logo rect",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.01, stagger: { each: 0.012, from: "random" } },
+        0.15,
+      )
       .to(root.current, { clipPath: "inset(0 0 100% 0)", duration: 0.9, ease: "expo.inOut" }, "+=0.15");
 
     return () => {
@@ -76,7 +81,7 @@ export function Preloader() {
         ))}
       </div>
       <div className="flex items-end justify-between gap-6">
-        <Logo className="preload-logo w-[min(60vw,420px)] text-fg" />
+        <Logo className="preload-logo w-[min(60vw,420px)] text-fg" fill={0.88} glitch={false} />
         <span ref={counter} className="font-mono text-[11px] tabular-nums text-muted">
           000
         </span>
