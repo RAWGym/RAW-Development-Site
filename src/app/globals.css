@@ -172,3 +172,37 @@ button:focus-visible {
   outline-offset: 3px;
   border-radius: 999px;
 }
+
+/* Блик на наклоняемых карточках */
+[data-tilt] {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+[data-tilt]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgb(255 255 255 / 0.1), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 2;
+}
+[data-tilt][data-tilt-on="true"]::after {
+  opacity: 1;
+}
+
+@keyframes ticker {
+  to { transform: translateX(-50%); }
+}
+/* Контурный текст бегущей строки; при наведении заливается */
+.cta-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--muted);
+  transition: color 0.5s var(--ease-out), -webkit-text-stroke-color 0.5s;
+}
+.group:hover .cta-outline {
+  color: var(--fg);
+  -webkit-text-stroke-color: var(--fg);
+}

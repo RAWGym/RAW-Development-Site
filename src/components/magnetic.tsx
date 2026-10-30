@@ -31,11 +31,43 @@ export function Magnetic() {
         active = null;
       }
     };
+    // Карточки с data-tilt наклоняются за курсором, по ним скользит блик.
+    let tilted: HTMLElement | null = null;
+    const onTilt = (e: PointerEvent) => {
+      const el = (e.target as HTMLElement | null)?.closest<HTMLElement>("[data-tilt]") ?? null;
+      if (tilted && tilted !== el) untilt(tilted);
+      tilted = el;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width;
+      const py = (e.clientY - r.top) / r.height;
+      el.style.transition = "transform .25s var(--ease-out)";
+      el.style.transform = `perspective(1000px) rotateX(${(0.5 - py) * 6}deg) rotateY(${(px - 0.5) * 8}deg)`;
+      el.style.setProperty("--gx", `${px * 100}%`);
+      el.style.setProperty("--gy", `${py * 100}%`);
+      el.dataset.tiltOn = "true";
+    };
+    const untilt = (el: HTMLElement) => {
+      el.style.transition = "transform .8s var(--ease-out)";
+      el.style.transform = "";
+      el.dataset.tiltOn = "false";
+    };
+    const onTiltOut = (e: PointerEvent) => {
+      if (tilted && !tilted.contains(e.relatedTarget as Node | null)) {
+        untilt(tilted);
+        tilted = null;
+      }
+    };
+
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerout", onOut, { passive: true });
+    window.addEventListener("pointermove", onTilt, { passive: true });
+    window.addEventListener("pointerout", onTiltOut, { passive: true });
     return () => {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerout", onOut);
+      window.removeEventListener("pointermove", onTilt);
+      window.removeEventListener("pointerout", onTiltOut);
     };
   }, []);
   return null;

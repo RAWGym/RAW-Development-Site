@@ -88,7 +88,7 @@ function CaseCard({ c, index }: { c: CaseStudy; index: number }) {
       data-cursor="Смотреть"
       className="group relative block w-full shrink-0 md:w-[min(56vw,calc((100svh-330px)*1.6))] md:max-w-[880px]"
     >
-      <div className="relative aspect-[16/10] overflow-hidden rounded-[28px] border border-line">
+      <div data-tilt className="relative aspect-[16/10] overflow-hidden rounded-[28px] border border-line">
         <div className="absolute inset-0 transition-transform duration-[1200ms] ease-[var(--ease-out)] group-hover:scale-[1.04]">
           <CaseCover c={c} />
         </div>
