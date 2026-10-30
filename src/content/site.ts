@@ -28,4 +28,5 @@ export const nav = [
   { href: "/work", label: "Кейсы" },
   { href: "/process", label: "Процесс" },
   { href: "/about", label: "О студии" },
+  { href: "/contact", label: "Контакты" },
 ] as const;
