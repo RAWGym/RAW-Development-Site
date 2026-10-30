@@ -3,7 +3,9 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import type { CaseStudy } from "@/content/cases";
+import { getCaseMedia } from "@/content/case-media";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +15,8 @@ export function CaseScreens({ c }: { c: CaseStudy }) {
   const root = useRef<HTMLDivElement>(null);
   const isPhone = !c.platforms.some((p) => /^(Web|Mobile web|Smart TV|Android TV|macOS)$/.test(p)) || c.platforms.includes("iOS");
   const screens = c.features.slice(0, 3);
+  // Настоящие скриншоты из public/cases/<slug>/screen-N, если они есть
+  const shots = getCaseMedia(c.slug).screens;
 
   useEffect(() => {
     const el = root.current;
@@ -38,13 +42,13 @@ export function CaseScreens({ c }: { c: CaseStudy }) {
         {isPhone
           ? screens.map((s, i) => (
               <div key={s.title} data-speed={[0.6, -0.3, 0.9][i]} className="w-[68vw] max-w-[280px] shrink-0 snap-center sm:mx-auto sm:w-full">
-                <Phone title={s.title} text={s.text} ink={tint.ink} variant={i} />
+                <Phone title={s.title} text={s.text} ink={tint.ink} variant={i} shot={shots[i]} />
               </div>
             ))
           : (
             <>
               <div data-speed="0.4">
-                <Browser title={screens[0]?.title ?? c.title} ink={tint.ink} url={c.url?.replace("https://", "") ?? `${c.slug}.app`} />
+                <Browser title={screens[0]?.title ?? c.title} ink={tint.ink} url={c.url?.replace("https://", "") ?? `${c.slug}.app`} shot={shots[0]} />
               </div>
               <div className="grid gap-6" data-speed="-0.4">
                 {screens.slice(1).map((s, i) => (
@@ -58,7 +62,15 @@ export function CaseScreens({ c }: { c: CaseStudy }) {
   );
 }
 
-function Phone({ title, text, ink, variant }: { title: string; text: string; ink: string; variant: number }) {
+function Phone({ title, text, ink, variant, shot }: { title: string; text: string; ink: string; variant: number; shot?: string }) {
+  if (shot)
+    return (
+      <div className="rounded-[36px] border p-2 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)]" style={{ borderColor: `${ink}33`, background: "#0e0e10" }}>
+        <div className="relative aspect-[9/19] overflow-hidden rounded-[28px]">
+          <Image src={shot} alt={title} fill sizes="(min-width: 640px) 30vw, 70vw" className="object-cover object-top" />
+        </div>
+      </div>
+    );
   return (
     <div className="rounded-[36px] border p-2 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)]" style={{ borderColor: `${ink}33`, background: "#0e0e10" }}>
       <div className="relative aspect-[9/19] overflow-hidden rounded-[28px] p-4" style={{ background: `linear-gradient(180deg, ${ink}12, transparent 60%)` }}>
@@ -123,7 +135,7 @@ function Skeleton({ ink, variant }: { ink: string; variant: number }) {
   );
 }
 
-function Browser({ title, ink, url }: { title: string; ink: string; url: string }) {
+function Browser({ title, ink, url, shot }: { title: string; ink: string; url: string; shot?: string }) {
   return (
     <div className="overflow-hidden rounded-2xl border shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)]" style={{ borderColor: `${ink}33`, background: "#0e0e10" }}>
       <div className="flex items-center gap-2 border-b px-4 py-3" style={{ borderColor: `${ink}1f` }}>
@@ -134,6 +146,11 @@ function Browser({ title, ink, url }: { title: string; ink: string; url: string 
           {url}
         </span>
       </div>
+      {shot ? (
+        <div className="relative aspect-[16/10]">
+          <Image src={shot} alt={title} fill sizes="(min-width: 768px) 55vw, 100vw" className="object-cover object-top" />
+        </div>
+      ) : (
       <div className="p-6">
         <div className="text-xl font-medium" style={{ color: ink }}>
           {title}
@@ -149,6 +166,7 @@ function Browser({ title, ink, url }: { title: string; ink: string; url: string 
           <span className="h-9 w-24 rounded-full border" style={{ borderColor: `${ink}40` }} />
         </div>
       </div>
+      )}
     </div>
   );
 }

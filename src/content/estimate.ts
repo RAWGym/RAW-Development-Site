@@ -3,15 +3,15 @@
 export type Kind = { id: string; label: string; base: number; weeks: [number, number]; platforms?: boolean };
 
 export const KINDS: Kind[] = [
-  { id: "landing", label: "Лендинг", base: 250_000, weeks: [2, 3] },
-  { id: "site", label: "Корпоративный сайт", base: 600_000, weeks: [4, 6] },
-  { id: "shop", label: "Интернет-магазин", base: 1_200_000, weeks: [6, 10] },
-  { id: "service", label: "Веб-сервис / кабинет", base: 1_800_000, weeks: [8, 14] },
-  { id: "app", label: "Мобильное приложение", base: 2_500_000, weeks: [10, 20], platforms: true },
-  { id: "bot", label: "Telegram-бот", base: 150_000, weeks: [1, 3] },
-  { id: "miniapp", label: "Mini App + бот", base: 600_000, weeks: [3, 6] },
-  { id: "game", label: "Игра", base: 1_500_000, weeks: [6, 14] },
-  { id: "media", label: "Плеер / ТВ", base: 1_000_000, weeks: [4, 10] },
+  { id: "landing", label: "Лендинг", base: 180_000, weeks: [2, 3] },
+  { id: "site", label: "Корпоративный сайт", base: 420_000, weeks: [4, 6] },
+  { id: "shop", label: "Интернет-магазин", base: 850_000, weeks: [6, 10] },
+  { id: "service", label: "Веб-сервис / кабинет", base: 1_300_000, weeks: [8, 14] },
+  { id: "app", label: "Мобильное приложение", base: 1_800_000, weeks: [10, 20], platforms: true },
+  { id: "bot", label: "Telegram-бот", base: 100_000, weeks: [1, 3] },
+  { id: "miniapp", label: "Mini App + бот", base: 420_000, weeks: [3, 6] },
+  { id: "game", label: "Игра", base: 1_100_000, weeks: [6, 14] },
+  { id: "media", label: "Плеер / ТВ", base: 700_000, weeks: [4, 10] },
 ];
 
 export const PLATFORMS = [
@@ -21,14 +21,14 @@ export const PLATFORMS = [
 ];
 
 export const FEATURES = [
-  { id: "pay", label: "Онлайн-оплата", price: 150_000, weeks: 1 },
-  { id: "auth", label: "Личный кабинет", price: 300_000, weeks: 2 },
-  { id: "admin", label: "Админка", price: 250_000, weeks: 1.5 },
-  { id: "integr", label: "1С / CRM / Kaspi", price: 300_000, weeks: 2 },
-  { id: "push", label: "Уведомления", price: 100_000, weeks: 0.5 },
-  { id: "ai", label: "AI-ассистент", price: 250_000, weeks: 1.5 },
-  { id: "i18n", label: "Несколько языков", price: 120_000, weeks: 1 },
-  { id: "analytics", label: "Аналитика", price: 80_000, weeks: 0.5 },
+  { id: "pay", label: "Онлайн-оплата", price: 100_000, weeks: 1 },
+  { id: "auth", label: "Личный кабинет", price: 200_000, weeks: 2 },
+  { id: "admin", label: "Админка", price: 170_000, weeks: 1.5 },
+  { id: "integr", label: "1С / CRM / Kaspi", price: 200_000, weeks: 2 },
+  { id: "push", label: "Уведомления", price: 70_000, weeks: 0.5 },
+  { id: "ai", label: "AI-ассистент", price: 170_000, weeks: 1.5 },
+  { id: "i18n", label: "Несколько языков", price: 80_000, weeks: 1 },
+  { id: "analytics", label: "Аналитика", price: 50_000, weeks: 0.5 },
 ];
 
 export const DESIGN = [

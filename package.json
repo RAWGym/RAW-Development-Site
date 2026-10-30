@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "predev": "node scripts/case-media.mjs",
+    "prebuild": "node scripts/case-media.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",

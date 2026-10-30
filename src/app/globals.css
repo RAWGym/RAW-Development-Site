@@ -13,7 +13,9 @@
   --faint: #7d7b77;
   --line: rgb(237 235 231 / 0.08);
   --line-strong: rgb(237 235 231 / 0.16);
-  --accent: #edebe7;
+  /* Медь — единственный цветной акцент: статусы, активные состояния, ховеры */
+  --accent: #e08a55;
+  --accent-soft: rgb(224 138 85 / 0.14);
   --glass: rgb(19 19 21 / 0.62);
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -36,6 +38,7 @@
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
 
   --font-display: var(--ff-display), "Arial Narrow", sans-serif;
   --font-sans: var(--ff-text), system-ui, sans-serif;
@@ -56,7 +59,7 @@ body {
 }
 
 ::selection {
-  background: var(--fg);
+  background: var(--accent);
   color: var(--bg);
 }
 
@@ -205,4 +208,31 @@ button:focus-visible {
 .group:hover .cta-outline {
   color: var(--fg);
   -webkit-text-stroke-color: var(--fg);
+}
+
+/* Галочка после отправки заявки */
+.lead-done {
+  animation: screenIn 0.6s var(--ease-out) both;
+}
+.lead-check {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: draw 0.6s 0.2s var(--ease-out) forwards;
+}
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Автозаполнение браузера не должно красить поля в жёлтый */
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--fg);
+  transition: background-color 9999s;
+}
+
+/* Свободный слот мягко пульсирует */
+.slot-free {
+  animation: slotPulse 2.2s ease-in-out infinite;
+}
+@keyframes slotPulse {
+  50% { box-shadow: 0 0 0 4px var(--accent-soft); }
 }

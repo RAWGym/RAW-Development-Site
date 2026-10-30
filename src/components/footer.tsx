@@ -8,8 +8,8 @@ import { scrollToTop } from "./smooth-scroll";
 
 export function Footer() {
   const { whatsapp, telegram, email } = site.contacts;
-  // На странице брифа бегущая строка «Обсудить проект» не нужна
-  const showCta = usePathname() !== "/start";
+  // Там, где уже есть форма заявки, бегущая строка «Обсудить проект» не нужна
+  const showCta = !["/", "/start", "/contact"].includes(usePathname());
 
   return (
     <>
@@ -44,13 +44,13 @@ export function Footer() {
       <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-10 md:grid-cols-12 md:gap-6">
         <div className="col-span-2 flex flex-col gap-4 md:col-span-5">
           <span className="label">[∞] — Связаться</span>
-          <p className="max-w-[28ch] font-display text-3xl leading-[1.05] md:text-4xl" style={{ fontVariationSettings: "'wdth' 120" }}>
-            Есть идея? Давайте соберём её.
+          <p className="max-w-[28ch] font-display text-2xl leading-[1.08] md:text-4xl" style={{ fontVariationSettings: "'wdth' 120" }}>
+            Сайты, приложения и боты — от идеи до пикселя.
           </p>
           <div className="flex items-center gap-2 font-mono text-[11px] text-muted">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-fg opacity-40" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-fg" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#5fd38d] opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#5fd38d]" />
             </span>
             {site.status}
           </div>

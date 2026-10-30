@@ -1,48 +1,40 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { sectionPad } from "@/components/reveal";
-import { site } from "@/content/site";
+import { LeadForm } from "@/components/lead/lead-form";
 
 const KINDS = ["Сайт", "Приложение", "Telegram-бот", "Игра", "Для себя", "Другое"];
-const BUDGETS = ["до 500 тыс ₸", "0,5–2 млн ₸", "2–5 млн ₸", "больше 5 млн ₸", "Пока не знаю"];
+const BUDGETS = ["до 300 тыс ₸", "0,3–1 млн ₸", "1–3 млн ₸", "больше 3 млн ₸", "Пока не знаю"];
 const TERMS = ["Срочно", "1–2 месяца", "Не горит"];
 
-// Финальный призыв: магнитная кнопка и мини-бриф из трёх вопросов.
-// Заявки пока не отправляются на сервер: бриф открывает WhatsApp с готовым текстом.
-export function FinalCta() {
+// Финальный призыв: три быстрых вопроса и форма заявки.
+export function FinalCta({ label = "[07] — Старт" }: { label?: string }) {
   const [kind, setKind] = useState<string | null>(null);
   const [budget, setBudget] = useState<string | null>(null);
   const [term, setTerm] = useState<string | null>(null);
 
-  const text = [
-    "Здравствуйте! Хочу обсудить проект.",
-    kind && `Что делаем: ${kind}`,
-    budget && `Бюджет: ${budget}`,
-    term && `Срок: ${term}`,
-  ]
-    .filter(Boolean)
-    .join("\n");
-  const href = `${site.contacts.whatsapp.href}?text=${encodeURIComponent(text)}`;
+  const details = [kind && `Что делаем: ${kind}`, budget && `Бюджет: ${budget}`, term && `Срок: ${term}`].filter(Boolean).join("\n");
 
   return (
-    <section data-section="start" className="py-24 md:py-40" style={sectionPad}>
+    <section data-section="start" className="py-20 md:py-28" style={sectionPad}>
       <div className="mx-auto max-w-[1440px]">
-        <span className="label">[07] — Старт</span>
-        <h2 className="mt-6 font-display text-[clamp(40px,9vw,168px)] font-semibold uppercase leading-[0.9] [font-variation-settings:'wdth'_110] md:[font-variation-settings:'wdth'_125]">
+        <span className="label">{label}</span>
+        <h2 className="mt-5 font-display text-[clamp(40px,8.4vw,156px)] font-semibold uppercase leading-[0.9] [font-variation-settings:'wdth'_110] md:[font-variation-settings:'wdth'_125]">
           Есть идея?
           <br />
           <span className="text-muted">Давайте</span> соберём
         </h2>
 
-        <div className="mt-16 grid gap-10 md:grid-cols-12">
-          <div className="space-y-8 md:col-span-7">
+        <div className="mt-12 grid gap-12 md:mt-16 lg:grid-cols-12 lg:gap-8">
+          <div className="space-y-7 lg:col-span-5">
             <Choice label="01 · Что делаем" options={KINDS} value={kind} onChange={setKind} />
             <Choice label="02 · Бюджет" options={BUDGETS} value={budget} onChange={setBudget} />
             <Choice label="03 · Срок" options={TERMS} value={term} onChange={setTerm} />
           </div>
-          <div className="flex items-end md:col-span-4 md:col-start-9 md:justify-end">
-            <Magnetic href={href}>Написать в WhatsApp</Magnetic>
+          <div className="rounded-[28px] border border-line bg-bg-raised/60 p-6 md:p-9 lg:col-span-6 lg:col-start-7">
+            <span className="label mb-2 block">04 · Контакты</span>
+            <LeadForm details={details} source="Главная / Контакты" />
           </div>
         </div>
       </div>
@@ -70,41 +62,13 @@ function Choice({
             key={o}
             type="button"
             aria-pressed={value === o}
-            onClick={() => onChange(o)}
-            className={`rounded-full border px-4 py-2 text-sm transition-colors duration-200 ${value === o ? "border-fg bg-fg text-bg" : "border-line-strong text-fg/85 hover:border-fg"}`}
+            onClick={() => onChange(value === o ? "" : o)}
+            className={`min-h-11 rounded-full border px-4 py-2 text-sm transition-colors duration-200 ${value === o ? "border-accent bg-accent text-bg" : "border-line-strong text-fg/85 hover:border-fg"}`}
           >
             {o}
           </button>
         ))}
       </div>
     </fieldset>
-  );
-}
-
-function Magnetic({ href, children }: { href: string; children: string }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const move = (e: React.PointerEvent<HTMLAnchorElement>) => {
-    const el = ref.current;
-    if (!el || e.pointerType !== "mouse") return;
-    const r = el.getBoundingClientRect();
-    const x = e.clientX - (r.left + r.width / 2);
-    const y = e.clientY - (r.top + r.height / 2);
-    el.style.transform = `translate(${x * 0.25}px, ${y * 0.35}px)`;
-  };
-  const leave = () => {
-    if (ref.current) ref.current.style.transform = "";
-  };
-  return (
-    <a
-      ref={ref}
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      onPointerMove={move}
-      onPointerLeave={leave}
-      className="grid h-44 w-44 place-items-center rounded-full bg-fg p-6 text-center text-[15px] font-medium leading-tight text-bg transition-transform duration-500 ease-[var(--ease-out)] md:h-56 md:w-56"
-    >
-      {children} →
-    </a>
   );
 }

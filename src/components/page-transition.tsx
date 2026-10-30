@@ -4,6 +4,19 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 const CELL = 56;
+
+type LenisLike = { scrollTo: (y: number, o: object) => void; stop: () => void; start: () => void };
+
+function resetScroll() {
+  const lenis = (window as unknown as { __lenis?: LenisLike }).__lenis;
+  if (lenis) {
+    // stop/start гасит накопленную инерцию
+    lenis.stop();
+    lenis.scrollTo(0, { immediate: true, force: true });
+    lenis.start();
+  }
+  window.scrollTo(0, 0);
+}
 const COVER_MS = 380;
 const REVEAL_MS = 520;
 
@@ -111,13 +124,34 @@ export function PageTransition() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
+  // Кнопки «назад/вперёд» сохраняют позицию, остальные переходы всегда начинаются сверху
+  const fromHistory = useRef(false);
+  useEffect(() => {
+    const onPop = () => (fromHistory.current = true);
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  useEffect(() => {
+    if (fromHistory.current) {
+      fromHistory.current = false;
+      return;
+    }
+    if (location.hash) return;
+    resetScroll();
+    // Инерция тачпада или пальца может докрутить страницу после сброса — повторяем на следующих кадрах
+    const r = requestAnimationFrame(resetScroll);
+    const t = setTimeout(resetScroll, 120);
+    return () => {
+      cancelAnimationFrame(r);
+      clearTimeout(t);
+    };
+  }, [pathname]);
+
   // Новая страница пришла — открываем её
   useEffect(() => {
     const s = state.current;
     if (s.phase !== "wait" && s.phase !== "cover") return;
-    const lenis = (window as unknown as { __lenis?: { scrollTo: (y: number, o: object) => void } }).__lenis;
-    if (lenis) lenis.scrollTo(0, { immediate: true, force: true });
-    else window.scrollTo(0, 0);
     const reveal = () => {
       s.phase = "reveal";
       if (label.current) label.current.style.opacity = "0";

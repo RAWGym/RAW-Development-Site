@@ -6,6 +6,7 @@ import { CaseCover } from "@/components/case-cover";
 import { Reveal } from "@/components/reveal";
 import { RiseLines } from "@/components/rise-lines";
 import { CaseScreens } from "@/components/work/case-screens";
+import { CaseCompare } from "@/components/work/case-compare";
 import { ParallaxCover } from "@/components/work/parallax-cover";
 
 export function generateStaticParams() {
@@ -38,7 +39,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
   return (
     <article data-section={c.slug}>
       {/* Шапка кейса */}
-      <header className="pb-12 pt-36 md:pb-16 md:pt-44" style={pad}>
+      <header className="pb-10 pt-32 md:pb-14 md:pt-40" style={pad}>
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-8 flex flex-wrap items-center gap-3">
             <Link href="/work" className="label transition-colors hover:text-fg">
@@ -88,7 +89,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       </div>
 
       {/* Задача и решение */}
-      <section className="py-24 md:py-36" style={pad} data-section="задача">
+      <section className="py-16 md:py-24" style={pad} data-section="задача">
         <div className="mx-auto grid max-w-[1440px] gap-16 md:grid-cols-12">
           <Reveal className="md:col-span-5">
             <h2 className="label mb-6 block">[01] — Задача</h2>
@@ -102,12 +103,12 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       </section>
 
       {/* Возможности */}
-      <section className="border-t border-line py-24 md:py-32" style={pad} data-section="возможности">
+      <section className="border-t border-line py-16 md:py-24" style={pad} data-section="возможности">
         <div className="mx-auto max-w-[1440px]">
-          <h2 className="label mb-12 block">[03] — Что внутри</h2>
+          <h2 className="label mb-10 block">[03] — Что внутри</h2>
           <div className="grid gap-px overflow-hidden rounded-[28px] border border-line bg-line sm:grid-cols-2">
             {c.features.map((f, i) => (
-              <Reveal key={f.title} delay={i * 0.06} className="flex min-h-[220px] flex-col justify-between gap-10 bg-bg p-7 md:p-10">
+              <Reveal key={f.title} delay={i * 0.06} className="flex flex-col justify-between gap-6 bg-bg p-6 md:min-h-[220px] md:gap-10 md:p-10">
                 <span className="font-mono text-[11px] text-faint">{String(i + 1).padStart(2, "0")}</span>
                 <div>
                   <h3 className="font-display text-2xl uppercase [font-variation-settings:'wdth'_115] md:text-3xl">{f.title}</h3>
@@ -120,17 +121,28 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       </section>
 
       {/* Экраны */}
-      <section className="border-t border-line py-24 md:py-32" style={pad} data-section="экраны">
+      <section className="border-t border-line py-16 md:py-24" style={pad} data-section="экраны">
         <div className="mx-auto max-w-[1440px]">
-          <h2 className="label mb-12 block">[03.1] — Экраны</h2>
+          <h2 className="label mb-10 block">[03.1] — Экраны</h2>
           <CaseScreens c={c} />
         </div>
       </section>
 
-      {/* Результаты */}
-      <section className="border-t border-line py-24 md:py-32" style={pad} data-section="результат">
+      {/* До / после */}
+      <section className="border-t border-line py-16 md:py-24" style={pad} data-section="до-после">
         <div className="mx-auto max-w-[1440px]">
-          <h2 className="label mb-12 block">[04] — Результат</h2>
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+            <h2 className="label block">[03.2] — От схемы к продукту</h2>
+            <span className="font-mono text-[11px] text-faint">потяните разделитель</span>
+          </div>
+          <CaseCompare c={c} />
+        </div>
+      </section>
+
+      {/* Результаты */}
+      <section className="border-t border-line py-16 md:py-24" style={pad} data-section="результат">
+        <div className="mx-auto max-w-[1440px]">
+          <h2 className="label mb-10 block">[04] — Результат</h2>
           <div className="grid gap-12 md:grid-cols-3">
             {c.results.map((r, i) => (
               <Reveal key={r.label} delay={i * 0.08} className={i > 0 ? "md:border-l md:border-line md:pl-8" : ""}>
@@ -143,7 +155,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       </section>
 
       {/* Стек и детали */}
-      <section className="border-t border-line py-24 md:py-32" style={pad} data-section="стек">
+      <section className="border-t border-line py-16 md:py-24" style={pad} data-section="стек">
         <div className="mx-auto grid max-w-[1440px] gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
             <h2 className="label mb-8 block">[05] — Стек</h2>
@@ -160,7 +172,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
             <ul className="divide-y divide-line border-y border-line">
               {c.details.map((d) => (
                 <li key={d} className="flex items-center gap-4 py-4">
-                  <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-fg text-[10px] text-bg">✓</span>
+                  <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-accent text-[10px] text-bg">✓</span>
                   {d}
                 </li>
               ))}
@@ -173,7 +185,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       <Link
         href={`/work/${next.slug}`}
         data-cursor="Дальше"
-        className="group relative block overflow-hidden border-t border-line py-20 md:py-32"
+        className="group relative block overflow-hidden border-t border-line py-16 md:py-28"
         style={pad}
       >
         <div className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100" aria-hidden="true">
@@ -182,7 +194,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
         </div>
         <div className="relative mx-auto max-w-[1440px]">
           <span className="label mb-6 block">Следующий кейс →</span>
-          <span className="block font-display text-[clamp(40px,9vw,160px)] font-semibold uppercase leading-[0.9] transition-transform duration-700 ease-[var(--ease-out)] [font-variation-settings:'wdth'_120] group-hover:translate-x-4">
+          <span className="block font-display text-[clamp(34px,9vw,160px)] font-semibold uppercase leading-[0.9] [overflow-wrap:anywhere] transition-transform duration-700 ease-[var(--ease-out)] [font-variation-settings:'wdth'_120] group-hover:translate-x-4">
             {next.title}
           </span>
           <span className="mt-4 block text-muted">{next.kind}</span>

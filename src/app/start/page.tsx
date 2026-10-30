@@ -4,7 +4,7 @@ import { Calculator } from "@/components/start/calculator";
 
 export const metadata: Metadata = {
   title: "Рассчитать проект",
-  description: "Калькулятор стоимости и сроков: сайт, приложение, Telegram-бот, игра. Ответьте на 5 вопросов и отправьте бриф в WhatsApp.",
+  description: "Калькулятор стоимости и сроков: сайт, приложение, Telegram-бот, игра. Ответьте на 5 вопросов и отправьте заявку.",
 };
 
 export default function StartPage() {
@@ -19,9 +19,9 @@ export default function StartPage() {
             ваш проект
           </>
         }
-        lead="Отметьте, что нужно, и сразу увидите вилку цены и сроков. Бриф уйдёт нам в WhatsApp одним нажатием."
+        lead="Отметьте, что нужно, и сразу увидите вилку цены и сроков. Ответы уйдут нам вместе с заявкой — пришлём точную смету."
       />
-      <section className="pb-24 md:pb-36" style={pagePad}>
+      <section className="pb-16 md:pb-24" style={pagePad}>
         <div className="mx-auto max-w-[1440px]">
           <Calculator />
         </div>

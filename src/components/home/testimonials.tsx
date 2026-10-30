@@ -13,7 +13,7 @@ const REVIEWS = [
 // Отзывы в виде сообщений Telegram, лента прокручивается свайпом.
 export function Testimonials() {
   return (
-    <section data-section="reviews" className="py-24 md:py-36">
+    <section data-section="reviews" className="py-16 md:py-24">
       <div className="mx-auto max-w-[1440px]" style={sectionPad}>
         <SectionHead index="06" label="Отзывы" title="Что говорят клиенты" />
       </div>

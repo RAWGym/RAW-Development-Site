@@ -25,18 +25,18 @@ type Tile = {
 
 // Цены «от» — заглушки, см. src/content/site.ts и план сайта.
 const TILES: Tile[] = [
-  { id: "web", title: "Сайты", text: "Лендинги, корпоративные сайты, магазины и веб-сервисы.", price: "от 250 000 ₸", widget: <BrowserWidget />, span: "md:col-span-7", h: "h-[260px]" },
-  { id: "apps", title: "Приложения", text: "iOS и Android: нативно или кроссплатформенно.", price: "от 2 500 000 ₸", widget: <PhoneWidget />, span: "md:col-span-5", h: "h-[260px]" },
-  { id: "bots", title: "Telegram-боты и Mini Apps", text: "Запись, оплата, каталоги, рассылки и AI-ответы.", price: "от 150 000 ₸", widget: <ChatWidget />, span: "md:col-span-4", h: "h-[300px]" },
-  { id: "games", title: "Игры", text: "Казуальные и аркадные игры для мобильных и веба.", price: "от 1 500 000 ₸", widget: <GameWidget />, span: "md:col-span-4", h: "h-[300px]" },
-  { id: "tv", title: "Медиа и ТВ", text: "Плееры, медиатеки и прошивки для Android TV.", price: "от 1 000 000 ₸", widget: <TvWidget />, span: "md:col-span-4", h: "h-[300px]" },
-  { id: "design", title: "Дизайн UI/UX", text: "От вайрфрейма до дизайн-системы. Потяните ползунок.", price: "от 200 000 ₸", widget: <BeforeAfterWidget />, span: "md:col-span-5", h: "h-[220px]" },
+  { id: "web", title: "Сайты", text: "Лендинги, корпоративные сайты, магазины и веб-сервисы.", price: "от 180 000 ₸", widget: <BrowserWidget />, span: "md:col-span-7", h: "h-[260px]" },
+  { id: "apps", title: "Приложения", text: "iOS и Android: нативно или кроссплатформенно.", price: "от 1 800 000 ₸", widget: <PhoneWidget />, span: "md:col-span-5", h: "h-[260px]" },
+  { id: "bots", title: "Telegram-боты и Mini Apps", text: "Запись, оплата, каталоги, рассылки и AI-ответы.", price: "от 100 000 ₸", widget: <ChatWidget />, span: "md:col-span-4", h: "h-[300px]" },
+  { id: "games", title: "Игры", text: "Казуальные и аркадные игры для мобильных и веба.", price: "от 1 100 000 ₸", widget: <GameWidget />, span: "md:col-span-4", h: "h-[300px]" },
+  { id: "tv", title: "Медиа и ТВ", text: "Плееры, медиатеки и прошивки для Android TV.", price: "от 700 000 ₸", widget: <TvWidget />, span: "md:col-span-4", h: "h-[300px]" },
+  { id: "design", title: "Дизайн UI/UX", text: "От вайрфрейма до дизайн-системы. Потяните ползунок.", price: "от 150 000 ₸", widget: <BeforeAfterWidget />, span: "md:col-span-5", h: "h-[220px]" },
   { id: "crm", title: "Автоматизация и CRM", text: "Связываем сайт, бота, CRM, склад и 1С в одну систему.", price: "по задаче", widget: <FlowWidget />, span: "md:col-span-7", h: "h-[220px]" },
 ];
 
 export function Services() {
   return (
-    <section id="services" data-section="services" className="py-24 md:py-36" style={sectionPad} onPointerMove={trackSpotlight}>
+    <section id="services" data-section="services" className="py-16 md:py-24" style={sectionPad} onPointerMove={trackSpotlight}>
       <div className="mx-auto max-w-[1440px]">
         <SectionHead
           index="01"
