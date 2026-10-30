@@ -32,13 +32,13 @@ export default function ServicesPage() {
         lead="От идеи и дизайна до релиза и поддержки. Цены указаны «от»: точную оценку с разбивкой по этапам даём после короткого брифа."
       />
 
-      <section className="pb-24 md:pb-36" style={pagePad}>
+      <section className="pb-16 md:pb-24" style={pagePad}>
         <div className="mx-auto max-w-[1440px]">
           <ServiceList />
         </div>
       </section>
 
-      <section className="border-t border-line py-24 md:py-32" style={pagePad} data-section="форматы">
+      <section className="border-t border-line py-16 md:py-24" style={pagePad} data-section="форматы">
         <div className="mx-auto max-w-[1440px]">
           <h2 className="label mb-12 block">[Форматы работы]</h2>
           <div className="grid gap-4 md:grid-cols-3">
@@ -55,7 +55,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-24 md:py-32" style={pagePad} data-section="вопросы">
+      <section className="border-t border-line py-16 md:py-24" style={pagePad} data-section="вопросы">
         <div className="mx-auto grid max-w-[1440px] gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <h2 className="label mb-6 block">[FAQ]</h2>

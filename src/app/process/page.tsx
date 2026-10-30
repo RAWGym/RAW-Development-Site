@@ -39,7 +39,7 @@ export default function ProcessPage() {
         lead="Вы всегда знаете, что происходит с проектом: каждую неделю видите живой результат, а смета не меняется без вашего согласия."
       />
 
-      <section className="border-t border-line py-24 md:py-32" style={pagePad} data-section="ритм">
+      <section className="border-t border-line py-16 md:py-24" style={pagePad} data-section="ритм">
         <div className="mx-auto max-w-[1440px]">
           <h2 className="label mb-12 block">[Ритм работы]</h2>
           <div className="grid gap-px overflow-hidden rounded-[24px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
@@ -58,7 +58,7 @@ export default function ProcessPage() {
 
       <Process />
 
-      <section className="border-t border-line py-24 md:py-32" style={pagePad} data-section="гарантии">
+      <section className="border-t border-line py-16 md:py-24" style={pagePad} data-section="гарантии">
         <div className="mx-auto max-w-[1440px]">
           <h2 className="label mb-12 block">[Гарантии]</h2>
           <div className="grid gap-12 md:grid-cols-4">

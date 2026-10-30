@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Slots } from "@/components/widgets/slots";
 import { useEffect, useRef } from "react";
 import { ScrambleWord } from "@/components/scramble-word";
 import { PixelField } from "./pixel-field";
@@ -72,13 +73,17 @@ export function Hero() {
         </div>
       </div>
 
+      <div className="relative mx-auto mb-auto w-full max-w-[1440px] pb-10 pt-2 md:pt-6">
+        <Slots />
+      </div>
+
       <div className="relative mx-auto w-full max-w-[1440px]">
         <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
           <span className="label">[00] — Студия разработки · {site.city}</span>
           <AudienceSwitch />
         </div>
 
-        <h1 className="font-display text-[clamp(26px,6.2vw,120px)] font-semibold uppercase leading-[0.95] tracking-[-0.01em] [font-variation-settings:'wdth'_100] md:[font-variation-settings:'wdth'_120]">
+        <h1 className="font-display text-[clamp(30px,6.2vw,120px)] font-semibold uppercase leading-[0.95] tracking-[-0.01em] [font-variation-settings:'wdth'_88] md:[font-variation-settings:'wdth'_120]">
           {audience === "business" ? "Разрабатываем" : "Сделаем вам"}
           <br />
           <ScrambleWord key={audience} words={WORDS[audience]} />
@@ -90,7 +95,7 @@ export function Hero() {
             <Link
               href="/start"
               data-magnetic="0.3"
-              className="rounded-full bg-fg px-6 py-3.5 text-sm font-medium text-bg"
+              className="rounded-full bg-fg px-6 py-3.5 text-sm font-medium text-bg transition-colors duration-300 hover:bg-accent"
             >
               Обсудить проект
             </Link>

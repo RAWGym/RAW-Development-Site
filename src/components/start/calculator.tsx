@@ -1,17 +1,16 @@
 "use client";
 
+import { LeadForm } from "@/components/lead/lead-form";
 import { useEffect, useRef, useState } from "react";
 import { DESIGN, FEATURES, KINDS, PACE, PLATFORMS, estimate, fmt, type Answers } from "@/content/estimate";
-import { site } from "@/content/site";
 
 const STORE = "raw-estimate";
 const INITIAL: Answers = { kinds: [], platform: "both", features: [], design: "custom", pace: "normal" };
 
 // Калькулятор: ответы сразу пересчитывают вилку цены и сроков.
-// Заявка не уходит на сервер — кнопка открывает WhatsApp с готовым брифом.
+// Бриф уходит вместе с заявкой через форму (см. /api/lead).
 export function Calculator() {
   const [a, setA] = useState<Answers>(INITIAL);
-  const [name, setName] = useState("");
   const [note, setNote] = useState("");
   const loaded = useRef(false);
 
@@ -40,7 +39,6 @@ export function Calculator() {
   const hasApp = a.kinds.includes("app");
 
   const brief = [
-    `Здравствуйте! ${name ? `Меня зовут ${name}. ` : ""}Хочу обсудить проект.`,
     `Что: ${KINDS.filter((k) => a.kinds.includes(k.id)).map((k) => k.label).join(", ") || "—"}`,
     hasApp && `Платформы: ${PLATFORMS.find((p) => p.id === a.platform)?.label}`,
     a.features.length > 0 && `Функции: ${FEATURES.filter((f) => a.features.includes(f.id)).map((f) => f.label).join(", ")}`,
@@ -54,7 +52,7 @@ export function Calculator() {
 
   return (
     <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
-      <div className="space-y-14 lg:col-span-7">
+      <div className="space-y-12 lg:col-span-7">
         <Step n="01" title="Что делаем" hint="Можно выбрать несколько">
           <div className="flex flex-wrap gap-2">
             {KINDS.map((k) => (
@@ -89,10 +87,10 @@ export function Calculator() {
                   type="button"
                   aria-pressed={on}
                   onClick={() => toggle("features", f.id)}
-                  className={`flex items-center justify-between gap-4 rounded-2xl border px-4 py-4 text-left transition-colors duration-300 ${on ? "border-fg bg-fg/[0.06]" : "border-line hover:border-line-strong"}`}
+                  className={`flex items-center justify-between gap-4 rounded-2xl border px-4 py-4 text-left transition-colors duration-300 ${on ? "border-accent bg-accent-soft" : "border-line hover:border-line-strong"}`}
                 >
                   <span className="flex items-center gap-3">
-                    <span className={`grid h-5 w-5 place-items-center rounded-md border text-[11px] transition-colors ${on ? "border-fg bg-fg text-bg" : "border-line-strong"}`}>{on ? "✓" : ""}</span>
+                    <span className={`grid h-5 w-5 place-items-center rounded-md border text-[11px] transition-colors ${on ? "border-accent bg-accent text-bg" : "border-line-strong"}`}>{on ? "✓" : ""}</span>
                     {f.label}
                   </span>
                   <span className="font-mono text-[11px] text-muted">+{Math.round(f.price / 1000)}к</span>
@@ -110,7 +108,7 @@ export function Calculator() {
                 type="button"
                 aria-pressed={a.design === d.id}
                 onClick={() => setA((s) => ({ ...s, design: d.id }))}
-                className={`rounded-2xl border p-4 text-left transition-colors duration-300 ${a.design === d.id ? "border-fg bg-fg/[0.06]" : "border-line hover:border-line-strong"}`}
+                className={`rounded-2xl border p-4 text-left transition-colors duration-300 ${a.design === d.id ? "border-accent bg-accent-soft" : "border-line hover:border-line-strong"}`}
               >
                 <span className="block">{d.label}</span>
                 <span className="mt-1 block text-sm text-muted">{d.hint}</span>
@@ -130,19 +128,13 @@ export function Calculator() {
           </div>
         </Step>
 
-        <Step n="05" title="Пара слов о вас" hint="Необязательно">
-          <div className="grid gap-3 sm:grid-cols-2">
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Имя"
-              className="rounded-2xl border border-line bg-transparent px-4 py-4 outline-none transition-colors placeholder:text-faint focus:border-fg"
-            />
+        <Step n="05" title="Идея в двух словах" hint="Необязательно">
+          <div className="grid gap-3">
             <input
               value={note}
               onChange={(e) => setNote(e.target.value)}
               placeholder="Идея в одной строке"
-              className="rounded-2xl border border-line bg-transparent px-4 py-4 outline-none transition-colors placeholder:text-faint focus:border-fg"
+              className="rounded-2xl border border-line bg-transparent px-4 py-4 outline-none transition-colors placeholder:text-faint focus:border-accent"
             />
           </div>
         </Step>
@@ -171,16 +163,10 @@ export function Calculator() {
 
           <Bars est={est} />
 
-          <a
-            href={`${site.contacts.whatsapp.href}?text=${encodeURIComponent(brief)}`}
-            target="_blank"
-            rel="noreferrer"
-            aria-disabled={!est}
-            className={`mt-8 flex items-center justify-between rounded-full py-2 pl-5 pr-2 font-medium transition-opacity ${est ? "bg-fg text-bg" : "pointer-events-none bg-fg/20 text-fg/50"}`}
-          >
-            Отправить бриф в WhatsApp
-            <span className="grid h-10 w-10 place-items-center rounded-full bg-bg text-fg">→</span>
-          </a>
+          <div className={`mt-8 border-t border-line pt-6 transition-opacity duration-500 ${est ? "opacity-100" : "opacity-60"}`}>
+            <span className="label mb-1 block">Получить точную смету</span>
+            <LeadForm compact details={brief} source="Калькулятор" submitLabel="Отправить бриф" />
+          </div>
           <p className="mt-4 text-[13px] leading-relaxed text-faint">
             Это ориентир, а не договор. Точную смету с этапами пришлём после короткого созвона.
           </p>
@@ -225,7 +211,7 @@ function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; chi
       type="button"
       aria-pressed={on}
       onClick={onClick}
-      className={`rounded-full border px-4 py-2.5 text-[14px] transition-colors duration-300 ${on ? "border-fg bg-fg text-bg" : "border-line-strong text-fg/80 hover:border-fg hover:text-fg"}`}
+      className={`rounded-full border px-4 py-2.5 text-[14px] transition-colors duration-300 ${on ? "border-accent bg-accent text-bg" : "border-line-strong text-fg/80 hover:border-fg hover:text-fg"}`}
     >
       {children}
     </button>

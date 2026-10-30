@@ -50,7 +50,7 @@ export function ServiceList() {
               <span className="hidden font-mono text-[12px] text-muted md:block">{s.price}</span>
               <span className="hidden font-mono text-[12px] text-muted md:block">{s.time}</span>
               <span
-                className={`grid h-10 w-10 place-items-center justify-self-end rounded-full border border-line-strong text-lg transition-all duration-500 ease-[var(--ease-out)] ${isOpen ? "rotate-45 bg-fg text-bg" : ""}`}
+                className={`grid h-10 w-10 place-items-center justify-self-end rounded-full border border-line-strong text-lg transition-all duration-500 ease-[var(--ease-out)] ${isOpen ? "rotate-45 border-accent bg-accent text-bg" : ""}`}
                 aria-hidden="true"
               >
                 +

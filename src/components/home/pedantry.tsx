@@ -22,7 +22,7 @@ const SCORES = [
 // Педантичность в деталях: пункты отмечаются галочками по ходу скролла.
 export function Pedantry() {
   return (
-    <section data-section="quality" className="py-24 md:py-36" style={sectionPad}>
+    <section data-section="quality" className="py-16 md:py-24" style={sectionPad}>
       <div className="mx-auto max-w-[1440px]">
         <SectionHead index="05" label="Стандарты" title={<>Педантичность<br />в деталях</>} />
         <div className="grid gap-12 md:grid-cols-12">
@@ -74,7 +74,7 @@ function CheckRow({ t, d }: { t: string; d: string }) {
   return (
     <li ref={ref} className="flex items-start gap-5 py-6">
       <span
-        className={`mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-md border transition-colors duration-500 ${seen ? "border-fg bg-fg text-bg" : "border-line-strong text-transparent"}`}
+        className={`mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-md border transition-colors duration-500 ${seen ? "border-accent bg-accent text-bg" : "border-line-strong text-transparent"}`}
         aria-hidden="true"
       >
         <svg viewBox="0 0 16 16" className="h-3.5 w-3.5">

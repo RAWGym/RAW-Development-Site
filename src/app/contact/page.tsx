@@ -25,7 +25,7 @@ export default function ContactPage() {
         lead="Отвечаем в течение часа в рабочее время. Можно коротко: что хотите сделать и к какому сроку."
       />
 
-      <section className="pb-24" style={pagePad}>
+      <section className="pb-4" style={pagePad}>
         <div className="mx-auto grid max-w-[1440px] gap-4 md:grid-cols-3">
           <a
             href={whatsapp.href}
@@ -46,14 +46,10 @@ export default function ContactPage() {
               <p className="mt-3 text-sm text-muted">Пн–Пт 10:00–19:00. В выходные отвечаем на срочное.</p>
             </div>
           </div>
-          <div className="rounded-[28px] border border-dashed border-line-strong p-7 md:col-span-3">
-            <span className="label">Telegram и почта</span>
-            <p className="mt-3 text-muted">Скоро появятся здесь. Пока самый быстрый способ — WhatsApp.</p>
-          </div>
         </div>
       </section>
 
-      <FinalCta />
+      <FinalCta label="[Заявка]" />
     </div>
   );
 }

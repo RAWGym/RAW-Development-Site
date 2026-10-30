@@ -7,7 +7,7 @@ import { SectionHead, sectionPad } from "@/components/reveal";
 // «Сделано для себя»: рабочий стол из виджетов в стиле iOS. На десктопе их можно перетаскивать.
 export function Personal() {
   return (
-    <section id="personal" data-section="personal" className="py-24 md:py-36" style={sectionPad}>
+    <section id="personal" data-section="personal" className="py-16 md:py-24" style={sectionPad}>
       <div className="mx-auto max-w-[1440px]">
         <SectionHead
           index="03"

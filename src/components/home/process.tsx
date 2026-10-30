@@ -42,7 +42,7 @@ export function Process() {
   }, []);
 
   return (
-    <section ref={root} id="process" data-section="process" className="py-24 md:py-36" style={sectionPad}>
+    <section ref={root} id="process" data-section="process" className="py-16 md:py-24" style={sectionPad}>
       <div className="mx-auto max-w-[1440px]">
         <SectionHead
           index="04"

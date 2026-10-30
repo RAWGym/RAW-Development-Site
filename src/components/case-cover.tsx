@@ -1,8 +1,22 @@
+import Image from "next/image";
 import type { CaseStudy } from "@/content/cases";
+import { getCaseMedia } from "@/content/case-media";
 
 // Обложка-заглушка кейса, пока нет реальных скриншотов: цветной фон,
 // крупное название и схематичный интерфейс в духе продукта.
-export function CaseCover({ c }: { c: CaseStudy }) {
+export function CaseCover({ c, sizes = "(min-width: 768px) 60vw, 100vw" }: { c: CaseStudy; sizes?: string }) {
+  const { cover } = getCaseMedia(c.slug);
+  if (cover)
+    return (
+      <div className="relative h-full w-full" style={{ background: c.cover.to }}>
+        <Image src={cover} alt={`${c.title} — интерфейс`} fill sizes={sizes} className="object-cover" />
+        {c.title && (
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-5 pt-16">
+            <div className="font-display text-[clamp(26px,3.6vw,56px)] font-semibold uppercase leading-none text-white [font-variation-settings:'wdth'_130]">{c.title}</div>
+          </div>
+        )}
+      </div>
+    );
   return (
     <div
       className="relative h-full w-full"
@@ -19,7 +33,13 @@ export function CaseCover({ c }: { c: CaseStudy }) {
         }}
         aria-hidden="true"
       />
-      <Mock slug={c.slug} ink={c.cover.ink} />
+      {/* Макет интерфейса не должен залезать на название: снизу он плавно растворяется */}
+      <div
+        className="absolute inset-0"
+        style={c.title ? { maskImage: "linear-gradient(180deg, black 55%, transparent 78%)", WebkitMaskImage: "linear-gradient(180deg, black 55%, transparent 78%)" } : undefined}
+      >
+        <Mock slug={c.slug} ink={c.cover.ink} />
+      </div>
       <div className="absolute bottom-5 left-5 right-5">
         <div className="font-display text-[clamp(26px,3.6vw,56px)] font-semibold uppercase leading-none [font-variation-settings:'wdth'_130]">
           {c.title}

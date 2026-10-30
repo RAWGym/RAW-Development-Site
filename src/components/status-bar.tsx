@@ -68,7 +68,7 @@ export function StatusBar() {
       aria-hidden="true"
     >
       <div className="h-px bg-line">
-        <div className="h-px origin-left bg-fg" style={{ transform: `scaleX(${progress})` }} />
+        <div className="h-px origin-left bg-accent" style={{ transform: `scaleX(${progress})` }} />
       </div>
       <div
         className="flex items-center justify-between bg-bg/80 py-1.5 font-mono text-[10px] tracking-wider text-muted backdrop-blur-md"
@@ -76,7 +76,7 @@ export function StatusBar() {
       >
         <div className="flex items-center gap-5">
           <span className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-fg/80 shadow-[0_0_8px_var(--fg)]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]" />
             raw-development
           </span>
           <span>~/{section}</span>

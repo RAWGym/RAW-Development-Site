@@ -4,7 +4,7 @@ import { RiseLines } from "@/components/rise-lines";
 // Шапка внутренней страницы: метка, крупный заголовок и вводный текст.
 export function PageHero({ label, title, lead, aside }: { label: string; title: ReactNode; lead?: ReactNode; aside?: ReactNode }) {
   return (
-    <header className="pb-16 pt-36 md:pb-24 md:pt-44" style={{ paddingLeft: "var(--gutter)", paddingRight: "var(--gutter-r)" }}>
+    <header className="pb-10 pt-32 md:pb-14 md:pt-40" style={{ paddingLeft: "var(--gutter)", paddingRight: "var(--gutter-r)" }}>
       <div className="mx-auto max-w-[1440px]">
         <span className="label mb-6 block animate-[screenIn_.6s_var(--ease-out)_both]">{label}</span>
         <h1 className="font-display text-[clamp(38px,8.4vw,156px)] font-semibold uppercase leading-[0.9] [overflow-wrap:anywhere] [font-variation-settings:'wdth'_100] md:[font-variation-settings:'wdth'_118]">

@@ -55,7 +55,7 @@ export default function AboutPage() {
 
       <Numbers />
 
-      <section className="py-24 md:py-36" style={pagePad} data-section="принципы">
+      <section className="py-16 md:py-24" style={pagePad} data-section="принципы">
         <div className="mx-auto max-w-[1440px]">
           <h2 className="label mb-12 block">[Принципы]</h2>
           <div className="grid gap-x-8 gap-y-16 md:grid-cols-2">
@@ -70,7 +70,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-24 md:py-32" style={pagePad} data-section="история">
+      <section className="border-t border-line py-16 md:py-24" style={pagePad} data-section="история">
         <div className="mx-auto max-w-[1440px]">
           <h2 className="label mb-12 block">[История]</h2>
           <ol className="border-t border-line">
@@ -84,7 +84,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-24 md:py-32" style={pagePad} data-section="команда">
+      <section className="border-t border-line py-16 md:py-24" style={pagePad} data-section="команда">
         <div className="mx-auto grid max-w-[1440px] gap-16 md:grid-cols-12">
           <div className="md:col-span-6">
             <h2 className="label mb-8 block">[Команда]</h2>

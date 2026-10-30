@@ -43,7 +43,7 @@ export function Work() {
   }, []);
 
   return (
-    <section ref={section} id="work" data-section="work" className="overflow-hidden py-24 md:flex md:min-h-screen md:flex-col md:justify-center md:pb-10 md:pt-28">
+    <section ref={section} id="work" data-section="work" className="overflow-hidden py-16 md:flex md:min-h-screen md:flex-col md:justify-center md:pb-10 md:pt-28">
       <div className="mx-auto w-full max-w-[1440px]" style={sectionPad}>
         <SectionHead
           index="02"
