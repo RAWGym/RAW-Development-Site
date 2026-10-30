@@ -34,3 +34,13 @@ export function scrollToTop() {
   if (lenis) lenis.scrollTo(0, { duration: 1.4 });
   else window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+// Остановить и вернуть инерционный скролл (например, пока открыто меню).
+export function setScrollLocked(locked: boolean) {
+  const lenis = (window as unknown as { __lenis?: Lenis }).__lenis;
+  if (lenis) {
+    if (locked) lenis.stop();
+    else lenis.start();
+  }
+  document.documentElement.style.overflow = locked ? "hidden" : "";
+}

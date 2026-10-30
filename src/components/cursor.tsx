@@ -26,7 +26,7 @@ export function Cursor() {
     const onMove = (e: PointerEvent) => {
       x = e.clientX;
       y = e.clientY;
-      if (coords.current) coords.current.textContent = `X ${String(x).padStart(4, "0")}  Y ${String(y).padStart(4, "0")}`;
+      if (coords.current) coords.current.textContent = `X ${String(Math.round(x)).padStart(4, "0")}  Y ${String(Math.round(y)).padStart(4, "0")}`;
       const el = (e.target as HTMLElement | null)?.closest<HTMLElement>("[data-cursor]");
       if (bubble.current) {
         if (el) {
