@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { CaseStudy } from "@/content/cases";
 import { getCaseMedia } from "@/content/case-media";
+import { BrowserFrame, PhoneFrame, caseUi } from "@/components/work/ui";
 
 // Обложка-заглушка кейса, пока нет реальных скриншотов: цветной фон,
 // крупное название и схематичный интерфейс в духе продукта.
@@ -50,6 +51,19 @@ export function CaseCover({ c, sizes = "(min-width: 768px) 60vw, 100vw" }: { c: 
 }
 
 function Mock({ slug, ink }: { slug: string; ink: string }) {
+  const ui = caseUi[slug];
+  if (ui?.cover.kind === "phone")
+    return (
+      <div className="absolute right-[9%] top-[8%] w-[clamp(120px,27%,300px)] rotate-[4deg]">
+        <PhoneFrame ink={ink}>{ui.cover.node}</PhoneFrame>
+      </div>
+    );
+  if (ui?.cover.kind === "browser")
+    return (
+      <div className="absolute right-[5%] top-[8%] w-[62%] -rotate-[2deg]">
+        <BrowserFrame desk={ui.cover.desk} ink={ink} />
+      </div>
+    );
   const card = { borderColor: `${ink}33`, background: `${ink}0d` };
   if (slug === "concerts-kz") {
     // схема зала
@@ -68,21 +82,12 @@ function Mock({ slug, ink }: { slug: string; ink: string }) {
       </div>
     );
   }
-  if (slug === "pomogaybo" || slug === "slotly") {
-    // телефон с чатом / Mini App
+  if (slug === "slotly") {
+    // телефон с записью в Mini App
     return (
       <div className="absolute right-[10%] top-[10%] w-[26%] rounded-[22px] border p-2" style={card}>
         <div className="space-y-2 rounded-[16px] p-2" style={{ background: `${ink}0d` }}>
-          {slug === "pomogaybo"
-            ? ["ChatGPT Plus", "Spotify", "Netflix", "YouTube"].map((t) => (
-                <div key={t} className="flex items-center justify-between rounded-lg px-2 py-2 text-[10px]" style={{ background: `${ink}14` }}>
-                  {t}
-                  <span className="rounded-full px-2 py-0.5 text-[8px]" style={{ background: ink, color: "#000" }}>
-                    Купить
-                  </span>
-                </div>
-              ))
-            : ["11:00", "14:30", "18:00"].map((t, i) => (
+          {["11:00", "14:30", "18:00"].map((t, i) => (
                 <div
                   key={t}
                   className="rounded-lg px-2 py-2 text-center text-[11px]"

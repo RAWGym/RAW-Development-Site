@@ -25,9 +25,9 @@ export const en = {
   ],
   cases: {
     "yurta-bank": { kind: "Mobile banking · iOS · Android · Web", summary: "A banking app where any operation takes 2–3 taps: transfers by phone and QR, spending analytics, savings, Face ID." },
-    "concerts-kz": { kind: "Tickets & events · Web", summary: "A concert ticketing site with an interactive seat map, a fair queue at sale start, Kaspi payments and Wallet tickets." },
+    "concerts-kz": { kind: "Tickets & events · Web", summary: "A concert ticketing site, an admin panel for organisers and our own ticket-scanner app for door staff." },
     "raw-management": { kind: "Team management · iOS · Android · Web", summary: "Tasks, calendar, contacts and finances for a manager and an assistant, synced in real time." },
-    pomogaybo: { kind: "Telegram Mini App + bot", summary: "Buy foreign subscriptions in a couple of taps right inside Telegram, with instant activation status." },
+    pomogaybo: { kind: "Telegram Mini App + bot", summary: "Subscriptions without card hassle: Photoshop, Claude, Notion and 20+ more services, ordered and installed right inside Telegram." },
     slotly: { kind: "Telegram booking bot", summary: "Booking and prepayment for salons in a chat: pick a master, a time and pay — no-shows dropped sharply." },
   } as Record<string, { kind: string; summary: string }>,
   process: [
