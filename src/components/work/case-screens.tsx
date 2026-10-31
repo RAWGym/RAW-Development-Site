@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import type { CaseStudy } from "@/content/cases";
 import { getCaseMedia } from "@/content/case-media";
+import { BrowserFrame, PhoneFrame, caseUi } from "@/components/work/ui";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,6 +32,46 @@ export function CaseScreens({ c }: { c: CaseStudy }) {
   }, []);
 
   const tint = { from: c.cover.from, to: c.cover.to, ink: c.cover.ink };
+  // Для части кейсов интерфейс нарисован кодом по продакшену
+  const ui = shots.length ? undefined : caseUi[c.slug];
+  if (ui)
+    return (
+      <div
+        ref={root}
+        className="relative overflow-hidden rounded-[28px] border border-line px-4 py-12 md:px-10 md:py-20"
+        style={{ background: `radial-gradient(90% 80% at 50% 0%, ${tint.from}, var(--bg) 75%)` }}
+      >
+        {ui.desktop && (
+          <div className="mx-auto grid max-w-[1200px] items-start gap-6 md:grid-cols-[1.15fr_1fr]">
+            {ui.desktop.map((d, i) => (
+              <figure key={d.url} data-speed={i ? -0.3 : 0.3}>
+                <BrowserFrame desk={d} ink={tint.ink} />
+                <figcaption className="mt-3 font-mono text-[11px] text-faint">{d.title}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+        {ui.phonesLabel && (
+          <div className="mx-auto mt-14 max-w-[1200px] md:mt-20">
+            <div className="label text-accent">{ui.phonesLabel.title}</div>
+            <p className="mt-3 max-w-[56ch] text-muted">{ui.phonesLabel.text}</p>
+          </div>
+        )}
+        {ui.phones && (
+          <div
+            data-lenis-prevent-touch
+            className={`-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-auto sm:grid sm:max-w-[1000px] sm:grid-cols-3 sm:overflow-visible sm:px-0 ${ui.phonesLabel ? "mt-8" : ""}`}
+          >
+            {ui.phones.map((p, i) => (
+              <figure key={p.title} data-speed={[0.5, -0.3, 0.8][i]} className="w-[68vw] max-w-[300px] shrink-0 snap-center sm:mx-auto sm:w-full">
+                <PhoneFrame ink={tint.ink}>{p.node}</PhoneFrame>
+                <figcaption className="mt-3 text-center font-mono text-[11px] text-faint">{p.title}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+      </div>
+    );
 
   return (
     <div
