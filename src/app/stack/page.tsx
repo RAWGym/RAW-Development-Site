@@ -7,14 +7,14 @@ import { principles } from "@/content/stack";
 
 export const metadata: Metadata = {
   title: "Стек",
-  description: "Технологии RAW Development: Next.js, SwiftUI, Kotlin, React Native, Node.js, PostgreSQL, Telegram Mini Apps и другие — и в каких проектах мы их применяли.",
+  description: "Технологии RAW Development: Next.js, SwiftUI, Kotlin, React Native, Node.js, PostgreSQL, Telegram Mini Apps и другие, и в каких проектах мы их применяли.",
 };
 
 export default function StackPage() {
   return (
     <div data-section="stack">
       <PageHero
-        label="[Стек] — инструменты под задачу"
+        label="[Стек] инструменты под задачу"
         title={
           <>
             Чем
@@ -22,7 +22,7 @@ export default function StackPage() {
             собираем
           </>
         }
-        lead="Наведите или нажмите на технологию — справа появятся проекты, где она работает. Стек выбираем под задачу, а не под моду."
+        lead="Наведите или нажмите на технологию, и справа появятся проекты, где она работает. Стек выбираем под задачу, а не под моду."
       />
 
       <section className="pb-16 md:pb-24" style={pagePad}>

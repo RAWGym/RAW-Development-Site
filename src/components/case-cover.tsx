@@ -13,7 +13,7 @@ export function CaseCover({ c: raw, sizes = "(min-width: 768px) 60vw, 100vw", ca
   if (cover)
     return (
       <div className="relative h-full w-full" style={{ background: c.cover.to }}>
-        <Image src={cover} alt={`${c.title} — интерфейс`} fill sizes={sizes} className="object-cover" />
+        <Image src={cover} alt={`${c.title}: интерфейс`} fill sizes={sizes} className="object-cover" />
         {c.title && (
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-5 pt-16">
             <div className="font-display text-[clamp(26px,3.6vw,56px)] font-semibold uppercase leading-none text-white [font-variation-settings:'wdth'_130]">{c.title}</div>
@@ -57,8 +57,9 @@ function Mock({ slug, ink, titled }: { slug: string; ink: string; titled: boolea
   const ui = caseUi[slug];
   // Три экрана веером. Размер считается от высоты и ширины обложки, чтобы телефоны
   // не вылезали за край ни в широкой карточке, ни в узкой мобильной.
-  if (ui?.cover.kind === "phone" && ui.phones) {
-    const [a, b, c] = ui.phones;
+  const fan = ui?.coverPhones ?? ui?.phones;
+  if (ui?.cover.kind === "phone" && fan) {
+    const [a, b, c] = fan;
     const w = titled ? "w-[min(19cqw,33cqh)]" : "w-[min(33cqw,40cqh)]";
     return (
       <div className={`absolute flex items-start ${titled ? "right-[5cqw] top-[7cqh]" : "left-1/2 top-1/2 -translate-x-1/2 -translate-y-[48%]"}`}>

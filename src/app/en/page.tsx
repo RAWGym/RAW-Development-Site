@@ -11,7 +11,7 @@ import { en } from "@/content/en";
 import { siteUrl } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "RAW Development — software studio in Almaty",
+  title: "RAW Development · software studio in Almaty",
   description: "Websites, mobile apps, Telegram bots and Mini Apps for businesses. Software development studio in Almaty, Kazakhstan.",
   alternates: { canonical: `${siteUrl}/en`, languages: { ru: siteUrl, en: `${siteUrl}/en` } },
   openGraph: { locale: "en_US" },
@@ -69,7 +69,7 @@ export default function EnglishPage() {
       {/* Services */}
       <section id="services" className="scroll-mt-24 py-16 md:py-24" style={pad}>
         <div className="mx-auto max-w-[1440px]">
-          <span className="label">[01] — Services</span>
+          <span className="label">[01] Services</span>
           <h2 className="mb-10 mt-5 font-display text-[clamp(32px,5.4vw,96px)] font-semibold uppercase leading-[0.92] [font-variation-settings:'wdth'_115]">Everything on a screen</h2>
           <div className="grid gap-px overflow-hidden rounded-[28px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {en.services.map((s, i) => (
@@ -89,7 +89,7 @@ export default function EnglishPage() {
       {/* Work */}
       <section id="work" className="scroll-mt-24 border-t border-line py-16 md:py-24" style={pad}>
         <div className="mx-auto max-w-[1440px]">
-          <span className="label">[02] — Selected work</span>
+          <span className="label">[02] Selected work</span>
           <h2 className="mb-10 mt-5 font-display text-[clamp(32px,5.4vw,96px)] font-semibold uppercase leading-[0.92] [font-variation-settings:'wdth'_115]">Products we built</h2>
           <div className="grid gap-x-6 gap-y-12 md:grid-cols-2">
             {featuredCases.map((c, i) => {
@@ -120,7 +120,7 @@ export default function EnglishPage() {
       {/* Process */}
       <section id="process" className="scroll-mt-24 border-t border-line py-16 md:py-24" style={pad}>
         <div className="mx-auto max-w-[1440px]">
-          <span className="label">[03] — Process</span>
+          <span className="label">[03] Process</span>
           <h2 className="mb-10 mt-5 font-display text-[clamp(32px,5.4vw,96px)] font-semibold uppercase leading-[0.92] [font-variation-settings:'wdth'_115]">Six steps, no surprises</h2>
           <ol className="grid gap-px overflow-hidden rounded-[28px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {en.process.map((p, i) => (

@@ -9,7 +9,7 @@ const BUDGETS = ["до 300 тыс ₸", "0,3–1 млн ₸", "1–3 млн ₸"
 const TERMS = ["Срочно", "1–2 месяца", "Не горит"];
 
 // Финальный призыв: три быстрых вопроса и форма заявки.
-export function FinalCta({ label = "[07] — Старт" }: { label?: string }) {
+export function FinalCta({ label = "[07] Старт" }: { label?: string }) {
   const [kind, setKind] = useState<string | null>(null);
   const [budget, setBudget] = useState<string | null>(null);
   const [term, setTerm] = useState<string | null>(null);

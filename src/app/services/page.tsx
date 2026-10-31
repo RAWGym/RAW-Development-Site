@@ -21,7 +21,7 @@ export default function ServicesPage() {
   return (
     <div data-section="services">
       <PageHero
-        label="[Услуги] — 07 направлений"
+        label="[Услуги] 07 направлений"
         title={
           <>
             Делаем

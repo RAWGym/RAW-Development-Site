@@ -53,7 +53,7 @@ export function PageTransition() {
       const idx = s.order[i];
       const x = (idx % s.cols) * size;
       const y = Math.floor(idx / s.cols) * size;
-      // Последние закрашенные клетки вспыхивают светлым, остальные — цвет фона.
+      // Последние закрашенные клетки вспыхивают светлым, остальные, цвет фона.
       ctx.fillStyle = i > n - s.cols * 0.6 && k < 1 ? fg : bg;
       ctx.fillRect(x, y, size + 1, size + 1);
     }
@@ -69,7 +69,7 @@ export function PageTransition() {
     s.cols = Math.ceil(window.innerWidth / CELL);
     s.rows = Math.ceil(window.innerHeight / CELL);
     s.order = Array.from({ length: s.cols * s.rows }, (_, i) => i);
-    // Перемешиваем, но с уклоном сверху вниз — так выглядит как «загрузка».
+    // Перемешиваем, но с уклоном сверху вниз, так выглядит как «загрузка».
     s.order.sort((a, b) => Math.floor(a / s.cols) - Math.floor(b / s.cols) + (Math.random() - 0.5) * s.rows * 1.4);
   };
 
@@ -96,7 +96,7 @@ export function PageTransition() {
       const href = a.getAttribute("href");
       if (!href || !href.startsWith("/") || href.startsWith("//")) return;
       const url = new URL(href, location.href);
-      if (url.pathname === location.pathname) return; // якоря и та же страница — без перехода
+      if (url.pathname === location.pathname) return; // якоря и та же страница, без перехода
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       const s = state.current;
       if (s.phase !== "idle") {
@@ -140,7 +140,7 @@ export function PageTransition() {
     }
     if (location.hash) return;
     resetScroll();
-    // Инерция тачпада или пальца может докрутить страницу после сброса — повторяем на следующих кадрах
+    // Инерция тачпада или пальца может докрутить страницу после сброса, повторяем на следующих кадрах
     const r = requestAnimationFrame(resetScroll);
     const t = setTimeout(resetScroll, 120);
     return () => {
@@ -149,7 +149,7 @@ export function PageTransition() {
     };
   }, [pathname]);
 
-  // Новая страница пришла — открываем её
+  // Новая страница пришла, открываем её
   useEffect(() => {
     const s = state.current;
     if (s.phase !== "wait" && s.phase !== "cover") return;

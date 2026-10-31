@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Fit } from "./kit";
 import { PomogayboCatalog, PomogayboHome, PomogayboProfile } from "./pomogaybo";
 import { RawFinance, RawTasks, RawToday } from "./raw-management";
+import { BizAccounting, BizCashier, BizHome, YurtaCard, YurtaCards, YurtaHome } from "./yurta";
 import { ConcertsAdmin, ConcertsSite, TicketerConcerts, TicketerProfile, TicketerScanner } from "./concerts";
 
 // Нарисованные кодом интерфейсы кейсов: обложка, экраны телефона и десктопа.
@@ -14,11 +15,39 @@ export type CaseUi = {
   desktop?: Desk[];
   phones?: PhoneScreen[];
   phonesLabel?: { title: string; text: string };
+  // Дополнительные ряды экранов со своим заголовком
+  more?: { label: { title: string; text: string }; phones: PhoneScreen[] }[];
+  // Какие три экрана показать веером на обложке (по умолчанию, phones)
+  coverPhones?: PhoneScreen[];
 };
 
 const site: Desk = { node: <ConcertsSite />, url: "concerts.kz", w: 1280, h: 720, title: "Афиша concerts.kz" };
 
 export const caseUi: Record<string, CaseUi> = {
+  "yurta-bank": {
+    cover: { kind: "phone", node: <YurtaHome /> },
+    coverPhones: [
+      { node: <YurtaHome />, title: "Главная" },
+      { node: <YurtaCards />, title: "Карты" },
+      { node: <BizHome />, title: "YURTA Business" },
+    ],
+    phonesLabel: { title: "YURTA Bank", text: "Личный банк: счёт и карты, переводы и платежи, бонусы YURTA Points." },
+    phones: [
+      { node: <YurtaHome />, title: "Главная" },
+      { node: <YurtaCards />, title: "Каталог карт" },
+      { node: <YurtaCard />, title: "Карта и лимиты" },
+    ],
+    more: [
+      {
+        label: { title: "YURTA Business", text: "Отдельное приложение для ИП: бизнес-счёт, касса с QR, бухгалтерия с налогами и взносами в одно касание." },
+        phones: [
+          { node: <BizHome />, title: "Бизнес-счёт" },
+          { node: <BizCashier />, title: "Касса и QR" },
+          { node: <BizAccounting />, title: "Бухгалтерия" },
+        ],
+      },
+    ],
+  },
   pomogaybo: {
     cover: { kind: "phone", node: <PomogayboHome /> },
     phones: [

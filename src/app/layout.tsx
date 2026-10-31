@@ -15,7 +15,7 @@ import { PageTransition } from "@/components/page-transition";
 import { Magnetic } from "@/components/magnetic";
 import { siteUrl } from "@/content/site";
 
-// Шрифты: открытая лицензия OFL, с кириллицей. Временные — до покупки лицензий.
+// Шрифты: открытая лицензия OFL, с кириллицей. Временные, до покупки лицензий.
 const display = Science_Gothic({
   subsets: ["latin", "cyrillic"],
   axes: ["wdth"],
@@ -39,8 +39,8 @@ const code = Martian_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "RAW Development — разработка сайтов, приложений и Telegram-ботов",
-    template: "%s — RAW Development",
+    default: "RAW Development · разработка сайтов, приложений и Telegram-ботов",
+    template: "%s · RAW Development",
   },
   description:
     "Студия разработки RAW Development: сайты, мобильные приложения, Telegram-боты и Mini Apps, игры и медиа-продукты для бизнеса и для себя. 8+ лет опыта.",

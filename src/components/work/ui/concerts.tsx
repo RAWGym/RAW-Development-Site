@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { FakeQr, Icon, StatusBar } from "./kit";
 
-// concerts.kz — сайт, админка и приложение тикетора. Вёрстка как в продакшене,
+// concerts.kz, сайт, админка и приложение тикетора. Вёрстка как в продакшене,
 // события, имена и почты выдуманные.
 const C = {
   bg: "#0d0d0d",
@@ -126,7 +126,7 @@ export function ConcertsSite() {
             <div className="mt-[6px] whitespace-nowrap text-[52px] leading-none" style={wide}>
               Полярная ночь
             </div>
-            <div className="mt-[14px] text-[14px]">Aurora — большой зимний концерт</div>
+            <div className="mt-[14px] text-[14px]">Aurora. Большой зимний концерт</div>
             <div className="mt-[6px] text-[12.5px]" style={{ color: C.muted }}>
               Алматы · Sound Hall
             </div>
@@ -331,7 +331,7 @@ export function ConcertsAdmin() {
   );
 }
 
-// ——— Приложение тикетора ———
+// ,,, Приложение тикетора ,,,
 
 function AppShell({ tab, children }: { tab: number; children: ReactNode }) {
   const items: [string, string][] = [

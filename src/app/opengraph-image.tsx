@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { PIXELS } from "@/components/pixel-font";
 
-export const alt = "RAW Development — студия разработки";
+export const alt = "RAW Development · студия разработки";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

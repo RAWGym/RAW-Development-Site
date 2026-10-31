@@ -93,11 +93,11 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       <section className="py-16 md:py-24" style={pad} data-section="задача">
         <div className="mx-auto grid max-w-[1440px] gap-16 md:grid-cols-12">
           <Reveal className="md:col-span-5">
-            <h2 className="label mb-6 block">[01] — Задача</h2>
+            <h2 className="label mb-6 block">[01] Задача</h2>
             <p className="text-lg leading-relaxed text-muted md:text-xl">{c.challenge}</p>
           </Reveal>
           <Reveal className="md:col-span-6 md:col-start-7" delay={0.1}>
-            <h2 className="label mb-6 block">[02] — Решение</h2>
+            <h2 className="label mb-6 block">[02] Решение</h2>
             <p className="text-lg leading-relaxed md:text-xl">{c.solution}</p>
           </Reveal>
         </div>
@@ -106,7 +106,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       {/* Возможности */}
       <section className="border-t border-line py-16 md:py-24" style={pad} data-section="возможности">
         <div className="mx-auto max-w-[1440px]">
-          <h2 className="label mb-10 block">[03] — Что внутри</h2>
+          <h2 className="label mb-10 block">[03] Что внутри</h2>
           <div className="grid gap-px overflow-hidden rounded-[28px] border border-line bg-line sm:grid-cols-2">
             {c.features.map((f, i) => (
               <Reveal key={f.title} delay={i * 0.06} className="flex flex-col justify-between gap-6 bg-bg p-6 md:min-h-[220px] md:gap-10 md:p-10">
@@ -124,7 +124,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       {/* Экраны */}
       <section className="border-t border-line py-16 md:py-24" style={pad} data-section="экраны">
         <div className="mx-auto max-w-[1440px]">
-          <h2 className="label mb-10 block">[03.1] — Экраны</h2>
+          <h2 className="label mb-10 block">[03.1] Экраны</h2>
           <CaseScreens c={c} />
         </div>
       </section>
@@ -133,7 +133,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       <section className="border-t border-line py-16 md:py-24" style={pad} data-section="до-после">
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
-            <h2 className="label block">[03.2] — От схемы к продукту</h2>
+            <h2 className="label block">[03.2] От схемы к продукту</h2>
             <span className="font-mono text-[11px] text-faint">потяните разделитель</span>
           </div>
           <CaseCompare c={c} />
@@ -143,7 +143,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       {/* Результаты */}
       <section className="border-t border-line py-16 md:py-24" style={pad} data-section="результат">
         <div className="mx-auto max-w-[1440px]">
-          <h2 className="label mb-10 block">[04] — Результат</h2>
+          <h2 className="label mb-10 block">[04] Результат</h2>
           <div className="grid gap-12 md:grid-cols-3">
             {c.results.map((r, i) => (
               <Reveal key={r.label} delay={i * 0.08} className={i > 0 ? "md:border-l md:border-line md:pl-8" : ""}>
@@ -159,7 +159,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       <section className="border-t border-line py-16 md:py-24" style={pad} data-section="стек">
         <div className="mx-auto grid max-w-[1440px] gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
-            <h2 className="label mb-8 block">[05] — Стек</h2>
+            <h2 className="label mb-8 block">[05] Стек</h2>
             <ul className="flex flex-wrap gap-2">
               {c.stack.map((s) => (
                 <li key={s} className="rounded-full border border-line-strong px-4 py-2 font-mono text-[12px]">
@@ -169,7 +169,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
             </ul>
           </div>
           <div className="md:col-span-6 md:col-start-7">
-            <h2 className="label mb-8 block">[06] — Детали, о которых не просили</h2>
+            <h2 className="label mb-8 block">[06] Детали, о которых не просили</h2>
             <ul className="divide-y divide-line border-y border-line">
               {c.details.map((d) => (
                 <li key={d} className="flex items-center gap-4 py-4">

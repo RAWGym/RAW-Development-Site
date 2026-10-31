@@ -11,7 +11,7 @@ export default function StartPage() {
   return (
     <div data-section="start">
       <PageHero
-        label="[Старт] — 5 вопросов, 1 минута"
+        label="[Старт] 5 вопросов, 1 минута"
         title={
           <>
             Сколько стоит
@@ -19,7 +19,7 @@ export default function StartPage() {
             ваш проект
           </>
         }
-        lead="Отметьте, что нужно, и сразу увидите вилку цены и сроков. Ответы уйдут нам вместе с заявкой — пришлём точную смету."
+        lead="Отметьте, что нужно, и сразу увидите вилку цены и сроков. Ответы уйдут нам вместе с заявкой, а мы пришлём точную смету."
       />
       <section className="pb-16 md:pb-24" style={pagePad}>
         <div className="mx-auto max-w-[1440px]">

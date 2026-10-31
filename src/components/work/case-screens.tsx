@@ -11,7 +11,7 @@ import { BrowserFrame, PhoneFrame, caseUi } from "@/components/work/ui";
 gsap.registerPlugin(ScrollTrigger);
 
 // Экраны продукта: три устройства с ключевыми функциями. Плывут с разной скоростью при прокрутке.
-// Пока нет настоящих скриншотов — схематичные интерфейсы в цветах кейса.
+// Пока нет настоящих скриншотов, схематичные интерфейсы в цветах кейса.
 export function CaseScreens({ c }: { c: CaseStudy }) {
   const root = useRef<HTMLDivElement>(null);
   const isPhone = !c.platforms.some((p) => /^(Web|Mobile web|Smart TV|Android TV|macOS)$/.test(p)) || c.platforms.includes("iOS");
@@ -51,24 +51,29 @@ export function CaseScreens({ c }: { c: CaseStudy }) {
             ))}
           </div>
         )}
-        {ui.phonesLabel && (
-          <div className="mx-auto mt-14 max-w-[1200px] md:mt-20">
-            <div className="label text-accent">{ui.phonesLabel.title}</div>
-            <p className="mt-3 max-w-[56ch] text-muted">{ui.phonesLabel.text}</p>
-          </div>
-        )}
-        {ui.phones && (
-          <div
-            data-lenis-prevent-touch
-            className={`-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-auto sm:grid sm:max-w-[1000px] sm:grid-cols-3 sm:overflow-visible sm:px-0 ${ui.phonesLabel ? "mt-8" : ""}`}
-          >
-            {ui.phones.map((p, i) => (
-              <figure key={p.title} data-speed={[0.5, -0.3, 0.8][i]} className="w-[68vw] max-w-[300px] shrink-0 snap-center sm:mx-auto sm:w-full">
-                <PhoneFrame ink={tint.ink}>{p.node}</PhoneFrame>
-                <figcaption className="mt-3 text-center font-mono text-[11px] text-faint">{p.title}</figcaption>
-              </figure>
-            ))}
-          </div>
+        {[{ label: ui.phonesLabel, phones: ui.phones }, ...(ui.more ?? [])].map(
+          (g, gi) =>
+            g.phones && (
+              <div key={gi}>
+                {g.label && (
+                  <div className={`mx-auto max-w-[1200px] ${gi || ui.desktop ? "mt-14 md:mt-20" : ""}`}>
+                    <div className="label text-accent">{g.label.title}</div>
+                    <p className="mt-3 max-w-[56ch] text-muted">{g.label.text}</p>
+                  </div>
+                )}
+                <div
+                  data-lenis-prevent-touch
+                  className={`-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-auto sm:grid sm:max-w-[1000px] sm:grid-cols-3 sm:overflow-visible sm:px-0 ${g.label ? "mt-8" : ""}`}
+                >
+                  {g.phones.map((p, i) => (
+                    <figure key={p.title} data-speed={[0.5, -0.3, 0.8][i]} className="w-[68vw] max-w-[300px] shrink-0 snap-center sm:mx-auto sm:w-full">
+                      <PhoneFrame ink={tint.ink}>{p.node}</PhoneFrame>
+                      <figcaption className="mt-3 text-center font-mono text-[11px] text-faint">{p.title}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            ),
         )}
       </div>
     );

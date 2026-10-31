@@ -92,7 +92,7 @@ type Msg = { from: "bot" | "me"; text: string };
 const SCRIPT: Record<string, string> = {
   "Записаться": "Свободно завтра: 11:00, 14:30, 18:00. Выберите время 👇",
   "14:30": "Готово! Записал вас на завтра в 14:30. Напомню за 2 часа.",
-  "Цены": "Стрижка — 6 000 ₸, борода — 4 000 ₸, комплекс — 9 000 ₸.",
+  "Цены": "Стрижка 6 000 ₸, борода 4 000 ₸, комплекс 9 000 ₸.",
 };
 export function ChatWidget() {
   const [msgs, setMsgs] = useState<Msg[]>([{ from: "bot", text: "Привет! Я Slotly. Чем помочь?" }]);
@@ -366,7 +366,7 @@ export function FlowWidget() {
     "M178 75 C 210 75, 220 110, 242 110",
   ];
   return (
-    <svg viewBox="0 0 300 150" className="h-full w-full" role="img" aria-label="Схема интеграций: сайт и бот передают данные в CRM, CRM — в склад и 1С">
+    <svg viewBox="0 0 300 150" className="h-full w-full" role="img" aria-label="Схема интеграций: сайт и бот передают данные в CRM, CRM в склад и 1С">
       {edges.map((d, i) => (
         <g key={i}>
           <path d={d} fill="none" stroke="var(--line-strong)" strokeWidth="1" />

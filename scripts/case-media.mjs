@@ -3,7 +3,7 @@
 //
 // Имена файлов (jpg, png, webp или avif):
 //   cover.*            обложка в списках кейсов и в шапке страницы кейса
-//   screen-1.* … 3.*   экраны в блоке «Экраны» (телефон — вертикальные 9:19, веб — screen-1 широкий 16:10)
+//   screen-1.* … 3.*   экраны в блоке «Экраны» (телефон: вертикальные 9:19, веб: screen-1 широкий 16:10)
 //   before.*, after.*  слайдер «до / после» (одинаковый размер)
 import { readdirSync, existsSync, writeFileSync, mkdirSync } from "node:fs";
 
@@ -28,6 +28,6 @@ if (existsSync(root)) {
 mkdirSync("src/content", { recursive: true });
 writeFileSync(
   out,
-  `// Файл создаётся скриптом scripts/case-media.mjs — не править руками.\nimport type { CaseMedia } from "./case-media";\n\nexport const caseMediaMap: Record<string, CaseMedia> = ${JSON.stringify(media, null, 2)};\n`,
+  `// Файл создаётся скриптом scripts/case-media.mjs: не править руками.\nimport type { CaseMedia } from "./case-media";\n\nexport const caseMediaMap: Record<string, CaseMedia> = ${JSON.stringify(media, null, 2)};\n`,
 );
 console.log(`[case-media] ${Object.keys(media).length} кейс(ов) со скриншотами`);

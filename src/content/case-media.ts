@@ -1,6 +1,6 @@
 import { caseMediaMap } from "./case-media.generated";
 
-// Скриншоты кейса. Пока их нет — на сайте показываются схематичные заглушки.
+// Скриншоты кейса. Пока их нет, на сайте показываются схематичные заглушки.
 // Как добавить: положить файлы в public/cases/<slug>/ (см. scripts/case-media.mjs).
 export type CaseMedia = {
   cover?: string;

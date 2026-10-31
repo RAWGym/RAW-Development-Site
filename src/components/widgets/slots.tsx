@@ -28,9 +28,9 @@ export function Slots({ className = "", lang = "ru" }: { className?: string; lan
               {isEn ? "Open" : "Свободно"} <span className="text-accent">{free}</span> {isEn ? "of" : "из"} {total}
             </>
           ) : isEn ? (
-            "Fully booked — next month is open"
+            "Fully booked, next month is open"
           ) : (
-            "Всё занято — запишем на следующий"
+            "Всё занято, запишем на следующий"
           )}
         </span>
       </span>

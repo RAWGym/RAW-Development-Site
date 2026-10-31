@@ -7,7 +7,7 @@ import { getCaseMedia } from "@/content/case-media";
 import { CaseCover } from "@/components/case-cover";
 
 // Слайдер «до / после». Пока нет настоящих скриншотов (public/cases/<slug>/before|after),
-// слева показываем вайрфрейм, справа — готовую обложку: путь от схемы к продукту.
+// слева показываем вайрфрейм, справа, готовую обложку: путь от схемы к продукту.
 export function CaseCompare({ c }: { c: CaseStudy }) {
   const media = getCaseMedia(c.slug);
   const real = Boolean(media.before && media.after);
@@ -22,12 +22,12 @@ export function CaseCompare({ c }: { c: CaseStudy }) {
   };
 
   const before: ReactNode = real ? (
-    <Image src={media.before!} alt={`${c.title} — до`} fill sizes="(min-width: 1440px) 1400px, 100vw" className="object-cover" />
+    <Image src={media.before!} alt={`${c.title}: до`} fill sizes="(min-width: 1440px) 1400px, 100vw" className="object-cover" />
   ) : (
     <Wireframe c={c} />
   );
   const after: ReactNode = real ? (
-    <Image src={media.after!} alt={`${c.title} — после`} fill sizes="(min-width: 1440px) 1400px, 100vw" className="object-cover" />
+    <Image src={media.after!} alt={`${c.title}: после`} fill sizes="(min-width: 1440px) 1400px, 100vw" className="object-cover" />
   ) : (
     <CaseCover c={{ ...c, title: "" }} />
   );

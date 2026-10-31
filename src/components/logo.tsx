@@ -7,7 +7,7 @@ import { LOGO_GRID, PIXELS, pixelNoise as rnd } from "./pixel-font";
 type Props = {
   className?: string;
   title?: string;
-  // Доля клетки, которую занимает пиксель: 1 — сплошные буквы, меньше — точечная матрица.
+  // Доля клетки, которую занимает пиксель: 1, сплошные буквы, меньше, точечная матрица.
   fill?: number;
   // Глитч при наведении
   glitch?: boolean;

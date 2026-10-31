@@ -10,7 +10,7 @@ export default function NotFound() {
     >
       <div className="mx-auto grid w-full max-w-[1440px] gap-12 md:grid-cols-12 md:items-center">
         <div className="md:col-span-4">
-          <span className="label mb-6 block">[404] — Страница не найдена</span>
+          <span className="label mb-6 block">[404] Страница не найдена</span>
           <h1 className="font-display text-[clamp(32px,4.4vw,72px)] font-semibold uppercase leading-[0.95] [font-variation-settings:'wdth'_115]">
             Здесь пусто.
             <br />

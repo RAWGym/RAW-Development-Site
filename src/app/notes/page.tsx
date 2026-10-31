@@ -14,7 +14,7 @@ export default function NotesPage() {
   return (
     <div data-section="notes">
       <PageHero
-        label="[Заметки] — как мы делали"
+        label="[Заметки] как мы делали"
         title={
           <>
             Заметки

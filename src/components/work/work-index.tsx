@@ -14,7 +14,7 @@ const FILTERS: { id: Filter; label: string }[] = [
   { id: "personal", label: "Для себя" },
 ];
 
-// Список кейсов: фильтр по аудитории и два вида — плитка и таблица с превью у курсора.
+// Список кейсов: фильтр по аудитории и два вида, плитка и таблица с превью у курсора.
 export function WorkIndex() {
   const [filter, setFilter] = useState<Filter>("all");
   const [view, setView] = useState<View>("grid");

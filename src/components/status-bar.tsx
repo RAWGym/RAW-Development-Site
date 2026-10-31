@@ -89,7 +89,7 @@ export function StatusBar() {
             {site.city} {time ?? "--:--:--"}
           </span>
           <span className="hidden lg:inline">UTF-8</span>
-          <span className="hidden lg:inline">G — сетка</span>
+          <span className="hidden lg:inline">G · сетка</span>
         </div>
       </div>
     </div>
