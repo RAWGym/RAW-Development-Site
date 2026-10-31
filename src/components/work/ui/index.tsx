@@ -52,8 +52,8 @@ export const caseUi: Record<string, CaseUi> = {
 
 export function PhoneFrame({ children, ink = "#ffffff", className = "" }: { children: ReactNode; ink?: string; className?: string }) {
   return (
-    <div className={`rounded-[32px] border p-[3%] shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)] ${className}`} style={{ borderColor: `${ink}33`, background: "#0e0e10" }}>
-      <div className="overflow-hidden rounded-[26px]">
+    <div className={`rounded-[15%/7%] border p-[3.2%] shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)] ${className}`} style={{ borderColor: `${ink}33`, background: "#0e0e10" }}>
+      <div className="overflow-hidden rounded-[12%/5.6%]">
         <Fit w={PHONE.w} h={PHONE.h}>
           {children}
         </Fit>

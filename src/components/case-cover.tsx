@@ -5,7 +5,10 @@ import { BrowserFrame, PhoneFrame, caseUi } from "@/components/work/ui";
 
 // Обложка-заглушка кейса, пока нет реальных скриншотов: цветной фон,
 // крупное название и схематичный интерфейс в духе продукта.
-export function CaseCover({ c, sizes = "(min-width: 768px) 60vw, 100vw" }: { c: CaseStudy; sizes?: string }) {
+// captioned: под карточкой уже есть подпись с названием. Для нарисованных интерфейсов
+// тогда не дублируем название внутри обложки и даём экранам всё место.
+export function CaseCover({ c: raw, sizes = "(min-width: 768px) 60vw, 100vw", captioned = false }: { c: CaseStudy; sizes?: string; captioned?: boolean }) {
+  const c = captioned && caseUi[raw.slug] ? { ...raw, title: "" } : raw;
   const { cover } = getCaseMedia(c.slug);
   if (cover)
     return (
@@ -20,7 +23,7 @@ export function CaseCover({ c, sizes = "(min-width: 768px) 60vw, 100vw" }: { c: 
     );
   return (
     <div
-      className="relative h-full w-full"
+      className="relative h-full w-full [container-type:size]"
       style={{
         background: `radial-gradient(120% 90% at 85% 10%, ${c.cover.from}, ${c.cover.to} 70%)`,
         color: c.cover.ink,
@@ -37,9 +40,9 @@ export function CaseCover({ c, sizes = "(min-width: 768px) 60vw, 100vw" }: { c: 
       {/* Макет интерфейса не должен залезать на название: снизу он плавно растворяется */}
       <div
         className="absolute inset-0"
-        style={c.title ? { maskImage: "linear-gradient(180deg, black 55%, transparent 78%)", WebkitMaskImage: "linear-gradient(180deg, black 55%, transparent 78%)" } : undefined}
+        style={{ maskImage: fade(Boolean(c.title)), WebkitMaskImage: fade(Boolean(c.title)) }}
       >
-        <Mock slug={c.slug} ink={c.cover.ink} />
+        <Mock slug={c.slug} ink={c.cover.ink} titled={Boolean(c.title)} />
       </div>
       <div className="absolute bottom-5 left-5 right-5">
         <div className="font-display text-[clamp(26px,3.6vw,56px)] font-semibold uppercase leading-none [font-variation-settings:'wdth'_130]">
@@ -50,18 +53,36 @@ export function CaseCover({ c, sizes = "(min-width: 768px) 60vw, 100vw" }: { c: 
   );
 }
 
-function Mock({ slug, ink }: { slug: string; ink: string }) {
+function Mock({ slug, ink, titled }: { slug: string; ink: string; titled: boolean }) {
   const ui = caseUi[slug];
-  if (ui?.cover.kind === "phone")
+  // Три экрана веером. Размер считается от высоты и ширины обложки, чтобы телефоны
+  // не вылезали за край ни в широкой карточке, ни в узкой мобильной.
+  if (ui?.cover.kind === "phone" && ui.phones) {
+    const [a, b, c] = ui.phones;
+    const w = titled ? "w-[min(19cqw,33cqh)]" : "w-[min(33cqw,40cqh)]";
     return (
-      <div className="absolute right-[9%] top-[8%] w-[clamp(120px,27%,300px)] rotate-[4deg]">
-        <PhoneFrame ink={ink}>{ui.cover.node}</PhoneFrame>
+      <div className={`absolute flex items-start ${titled ? "right-[5cqw] top-[7cqh]" : "left-1/2 top-1/2 -translate-x-1/2 -translate-y-[48%]"}`}>
+        <div className={`${w} mt-[9cqh] -mr-[3cqw] -rotate-[7deg] opacity-80`}>
+          <PhoneFrame ink={ink}>{b.node}</PhoneFrame>
+        </div>
+        <div className={`${w} relative z-10`}>
+          <PhoneFrame ink={ink}>{a.node}</PhoneFrame>
+        </div>
+        <div className={`${w} mt-[9cqh] -ml-[3cqw] rotate-[7deg] opacity-80`}>
+          <PhoneFrame ink={ink}>{c.node}</PhoneFrame>
+        </div>
       </div>
     );
+  }
   if (ui?.cover.kind === "browser")
     return (
-      <div className="absolute right-[5%] top-[8%] w-[62%] -rotate-[2deg]">
+      <div className={`absolute ${titled ? "right-[4cqw] top-[7cqh] w-[min(64cqw,100cqh)]" : "left-1/2 top-1/2 w-[min(80cqw,120cqh)] -translate-x-[54%] -translate-y-[56%]"}`}>
         <BrowserFrame desk={ui.cover.desk} ink={ink} />
+        {ui.phones && (
+          <div className="absolute -bottom-[14cqh] -right-[6cqw] w-[min(17cqw,28cqh)] rotate-[5deg]">
+            <PhoneFrame ink={ink}>{ui.phones[1].node}</PhoneFrame>
+          </div>
+        )}
       </div>
     );
   const card = { borderColor: `${ink}33`, background: `${ink}0d` };
@@ -188,3 +209,5 @@ function Mock({ slug, ink }: { slug: string; ink: string }) {
     </div>
   );
 }
+
+const fade = (titled: boolean) => (titled ? "linear-gradient(180deg, black 55%, transparent 80%)" : "linear-gradient(180deg, black 72%, transparent 97%)");
