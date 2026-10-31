@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Icon, StatusBar } from "./kit";
 
-// RAW Management — наш продукт. Интерфейс как в приложении, данные выдуманные.
+// RAW Management, наш продукт. Интерфейс как в приложении, данные выдуманные.
 const C = {
   bg: "#0c0c18",
   card: "#171730",

@@ -23,7 +23,7 @@ type Tile = {
   h: string;
 };
 
-// Цены «от» — заглушки, см. src/content/site.ts и план сайта.
+// Цены «от», заглушки, см. src/content/site.ts и план сайта.
 const TILES: Tile[] = [
   { id: "web", title: "Сайты", text: "Лендинги, корпоративные сайты, магазины и веб-сервисы.", price: "от 180 000 ₸", widget: <BrowserWidget />, span: "md:col-span-7", h: "h-[260px]" },
   { id: "apps", title: "Приложения", text: "iOS и Android: нативно или кроссплатформенно.", price: "от 1 800 000 ₸", widget: <PhoneWidget />, span: "md:col-span-5", h: "h-[260px]" },
@@ -48,7 +48,7 @@ export function Services() {
               на экране
             </>
           }
-          aside={<p className="max-w-[36ch] md:ml-auto">Каждая плитка — живой пример. Нажимайте, играйте, двигайте.</p>}
+          aside={<p className="max-w-[36ch] md:ml-auto">Каждая плитка: живой пример. Нажимайте, играйте, двигайте.</p>}
         />
 
         <div className="grid gap-4 md:grid-cols-12">

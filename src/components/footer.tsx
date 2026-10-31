@@ -9,7 +9,7 @@ import { scrollToTop } from "./smooth-scroll";
 
 export function Footer() {
   const { whatsapp, telegram, email } = site.contacts;
-    // Бегущая строка — только там, где нет своей формы или призыва внизу страницы
+    // Бегущая строка, только там, где нет своей формы или призыва внизу страницы
   const path = usePathname();
   const isEn = path.startsWith("/en");
   const f = en.footer;
@@ -47,9 +47,9 @@ export function Footer() {
     >
       <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-10 md:grid-cols-12 md:gap-6">
         <div className="col-span-2 flex flex-col gap-4 md:col-span-5">
-          <span className="label">{isEn ? "[∞] — Get in touch" : "[∞] — Связаться"}</span>
+          <span className="label">{isEn ? "[∞] Get in touch" : "[∞] Связаться"}</span>
           <p className="max-w-[28ch] font-display text-2xl leading-[1.08] md:text-4xl" style={{ fontVariationSettings: "'wdth' 120" }}>
-            {isEn ? f.tagline : "Сайты, приложения и боты — от идеи до пикселя."}
+            {isEn ? f.tagline : "Сайты, приложения и боты: от идеи до пикселя."}
           </p>
           <div className="flex items-center gap-2 font-mono text-[11px] text-muted">
             <span className="relative flex h-2 w-2">

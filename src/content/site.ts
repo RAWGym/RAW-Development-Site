@@ -1,4 +1,4 @@
-// Данные студии в одном месте. Всё, что помечено TODO, — заглушки до реальных данных.
+// Данные студии в одном месте. Всё, что помечено TODO,, заглушки до реальных данных.
 
 // Адрес сайта: пока поддомен Vercel, при переезде на свой домен задать NEXT_PUBLIC_SITE_URL.
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://rawdevelopment.vercel.app").replace(/\/$/, "");

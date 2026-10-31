@@ -10,14 +10,14 @@ const T = {
     hello: "Здравствуйте! Хочу обсудить проект.",
     me: (n: string) => `Меня зовут ${n}.`,
     doneTitle: "Заявка у нас",
-    doneText: "Ответим в течение часа в рабочее время. Если срочно — напишите в WhatsApp.",
+    doneText: "Ответим в течение часа в рабочее время. Если срочно, напишите в WhatsApp.",
     wa: "Написать в WhatsApp",
     again: "Отправить ещё одну",
     name: "Как вас зовут",
     nameErr: "Напишите имя",
     contact: "Телефон или @telegram",
     contactErr: "Нужен номер или ник, чтобы ответить",
-    msg: "Пара слов о задаче — по желанию",
+    msg: "Пара слов о задаче, по желанию",
     send: "Отправить заявку",
     sending: "Отправляем…",
     waShort: "или сразу в WhatsApp",
@@ -36,7 +36,7 @@ const T = {
     nameErr: "Please enter your name",
     contact: "Phone, @telegram or email",
     contactErr: "We need a way to reply",
-    msg: "A few words about the project — optional",
+    msg: "A few words about the project, optional",
     send: "Send request",
     sending: "Sending…",
     waShort: "or message us on WhatsApp",
@@ -46,7 +46,7 @@ const T = {
   },
 };
 
-// Форма заявки. details — то, что человек уже выбрал выше (тип проекта, бюджет, смета),
+// Форма заявки. details, то, что человек уже выбрал выше (тип проекта, бюджет, смета),
 // оно уходит вместе с заявкой и подставляется в запасную ссылку на WhatsApp.
 export function LeadForm({
   details = "",

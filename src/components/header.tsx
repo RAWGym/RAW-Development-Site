@@ -10,7 +10,7 @@ import { en, enNav } from "@/content/en";
 import { PALETTE_EVENT } from "./command-palette";
 import { ThemeToggle } from "./theme-toggle";
 
-// Шапка: на старте — полная строка, при прокрутке сжимается в стеклянную капсулу.
+// Шапка: на старте, полная строка, при прокрутке сжимается в стеклянную капсулу.
 // Под пунктами меню ездит подсветка, кнопка прокручивает текст при наведении.
 export function Header() {
   const [compact, setCompact] = useState(false);
@@ -57,7 +57,7 @@ export function Header() {
             : "max-w-[1440px] rounded-none border-transparent bg-transparent px-0 py-3",
         ].join(" ")}
       >
-        <Link href={isEn ? "/en" : "/"} aria-label={isEn ? "RAW Development — home" : "RAW Development — на главную"} className="group flex shrink-0 items-center gap-3">
+        <Link href={isEn ? "/en" : "/"} aria-label={isEn ? "RAW Development · home" : "RAW Development · на главную"} className="group flex shrink-0 items-center gap-3">
           <Logo className={`h-auto text-fg transition-[width] duration-700 ease-[var(--ease-out)] ${compact ? "w-[52px]" : "w-[68px]"}`} />
           <span
             className={`hidden font-mono text-[10px] uppercase leading-[1.15] tracking-[0.14em] text-muted transition-opacity duration-500 lg:block ${compact ? "opacity-0" : "opacity-100"}`}
@@ -85,7 +85,7 @@ export function Header() {
             href={isEn ? "/" : "/en"}
             hrefLang={isEn ? "ru" : "en"}
             className="grid h-9 min-w-9 place-items-center rounded-full border border-line-strong px-2 font-mono text-[11px] text-muted transition-colors hover:border-fg hover:text-fg"
-            aria-label={isEn ? "RU — русская версия" : "EN — English version"}
+            aria-label={isEn ? "RU · русская версия" : "EN · English version"}
           >
             {isEn ? "RU" : "EN"}
           </Link>

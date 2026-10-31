@@ -33,7 +33,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "bad_request" }, { status: 400 });
   }
 
-  // Бот заполнил скрытое поле — делаем вид, что всё хорошо
+  // Бот заполнил скрытое поле, делаем вид, что всё хорошо
   if (str(body.company, 200)) return NextResponse.json({ ok: true });
 
   const name = str(body.name, 80);

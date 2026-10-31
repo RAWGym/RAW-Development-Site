@@ -43,13 +43,13 @@ export function Reveal({ children, as: Tag = "div", className, delay = 0, y = 32
   );
 }
 
-// Заголовок секции: [01] — Название, и крупная строка под ним.
+// Заголовок секции: [01] Название, и крупная строка под ним.
 export function SectionHead({ index, label, title, aside }: { index: string; label: string; title: ReactNode; aside?: ReactNode }) {
   return (
     <div className="mb-12 grid gap-6 md:mb-16 md:grid-cols-12 md:items-end">
       <div className="md:col-span-8">
         <span className="label mb-5 block">
-          [{index}] — {label}
+          [{index}] {label}
         </span>
         <Reveal
           as="h2"

@@ -10,7 +10,7 @@ import { CaseCover } from "@/components/case-cover";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Избранные кейсы: на десктопе — горизонтальный скролл с закреплением секции.
+// Избранные кейсы: на десктопе, горизонтальный скролл с закреплением секции.
 export function Work() {
   const section = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);

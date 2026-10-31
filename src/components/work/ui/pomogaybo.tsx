@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Icon, StatusBar } from "./kit";
 
-// Помогайбо.рф — Telegram Mini App. Экраны нарисованы по продакшену, тексты настоящие.
+// Помогайбо.рф, Telegram Mini App. Экраны нарисованы по продакшену, тексты настоящие.
 const C = {
   bg: "#0f0d0c",
   bar: "#1b1a19",
@@ -130,7 +130,7 @@ export function PomogayboHome() {
             <br />с картами
           </div>
           <p className="mt-[12px] text-[14px] leading-[1.55]" style={{ color: "#cdbfb3" }}>
-            Photoshop, Claude, Notion и ещё десяток сервисов. Оплатим, оформим и установим — вам останется пользоваться.
+            Photoshop, Claude, Notion и ещё десяток сервисов. Оплатим, оформим и установим, а вам останется пользоваться.
           </p>
           <div className="mt-[18px] flex items-center justify-center gap-[8px] rounded-[14px] py-[14px] text-[15px] font-semibold" style={{ background: C.copper, color: "#2a170c" }}>
             Смотреть каталог <Icon n="arrow" size={17} stroke={2.2} />
@@ -207,7 +207,7 @@ export function PomogayboCatalog() {
             <Icon n="gift" size={18} />
           </span>
           <span>
-            Приглашайте друзей — скидка на каталог <span style={{ color: C.copper }}>до 25%</span>
+            Приглашайте друзей: скидка на каталог <span style={{ color: C.copper }}>до 25%</span>
           </span>
         </div>
         <div className="mt-[14px] flex items-center gap-[10px] rounded-[14px] px-[14px] py-[13px] text-[15px]" style={{ background: C.card, border: `1px solid ${C.line}`, color: C.faint }}>
@@ -321,7 +321,7 @@ export function PomogayboProfile() {
             <span className="block h-full w-1/2 rounded-full" style={{ background: C.copper }} />
           </div>
           <div className="mt-[8px] text-[12.5px]" style={{ color: C.muted }}>
-            Ещё 1 — и скидка станет 10%
+            Ещё 1, и скидка станет 10%
           </div>
           <div className="mt-[14px] flex items-center justify-between gap-[8px] whitespace-nowrap rounded-[14px] px-[14px] py-[13px] font-mono text-[11.5px]" style={{ background: "rgba(0,0,0,.25)", border: `1px solid #4a372a` }}>
             t.me/pomogaiborfbot?start=AK7Q2M

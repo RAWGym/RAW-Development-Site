@@ -31,11 +31,12 @@ export default function ContactPage() {
             href={whatsapp.href}
             target="_blank"
             rel="noreferrer"
-            className="group flex min-h-[260px] flex-col justify-between rounded-[28px] bg-fg p-7 text-bg md:col-span-2 md:p-10"
+            className="group flex min-h-[260px] flex-col justify-between rounded-[28px] bg-fg p-7 text-bg [container-type:inline-size] md:col-span-2 md:p-10"
           >
             <span className="font-mono text-[11px] uppercase tracking-widest opacity-60">WhatsApp</span>
-            <span className="flex items-end justify-between gap-6">
-              <span className="font-display text-[clamp(28px,4.6vw,72px)] font-semibold leading-none [font-variation-settings:'wdth'_110]">{whatsapp.label}</span>
+            <span className="flex flex-wrap items-end justify-between gap-x-6 gap-y-5">
+              {/* Номер всегда в одну строку: размер считается от ширины карточки */}
+              <span className="whitespace-nowrap font-display text-[clamp(20px,8.2cqw,76px)] md:text-[min(6.6cqw,64px)] font-semibold leading-none [font-variation-settings:'wdth'_110]">{whatsapp.label}</span>
               <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-bg text-xl text-fg transition-transform duration-500 ease-[var(--ease-out)] group-hover:-rotate-45">→</span>
             </span>
           </a>

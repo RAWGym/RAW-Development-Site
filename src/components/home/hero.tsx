@@ -79,7 +79,7 @@ export function Hero() {
 
       <div className="relative mx-auto w-full max-w-[1440px]">
         <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
-          <span className="label">[00] — Студия разработки · {site.city}</span>
+          <span className="label">[00] Студия разработки · {site.city}</span>
           <AudienceSwitch />
         </div>
 

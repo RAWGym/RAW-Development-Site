@@ -1,4 +1,4 @@
-// Модель калькулятора. Цифры — средние по рынку, заглушки до утверждения.
+// Модель калькулятора. Цифры, средние по рынку, заглушки до утверждения.
 
 export type Kind = { id: string; label: string; base: number; weeks: [number, number]; platforms?: boolean };
 

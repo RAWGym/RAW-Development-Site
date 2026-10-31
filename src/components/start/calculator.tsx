@@ -39,7 +39,7 @@ export function Calculator() {
   const hasApp = a.kinds.includes("app");
 
   const brief = [
-    `Что: ${KINDS.filter((k) => a.kinds.includes(k.id)).map((k) => k.label).join(", ") || "—"}`,
+    `Что: ${KINDS.filter((k) => a.kinds.includes(k.id)).map((k) => k.label).join(", ") || "нет"}`,
     hasApp && `Платформы: ${PLATFORMS.find((p) => p.id === a.platform)?.label}`,
     a.features.length > 0 && `Функции: ${FEATURES.filter((f) => a.features.includes(f.id)).map((f) => f.label).join(", ")}`,
     `Дизайн: ${DESIGN.find((d) => d.id === a.design)?.label}`,
