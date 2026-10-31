@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { allCases, getCase } from "@/content/cases";
 import { CaseCover } from "@/components/case-cover";
+import { fitTitle } from "@/lib/fit-title";
 import { Reveal } from "@/components/reveal";
 import { RiseLines } from "@/components/rise-lines";
 import { CaseScreens } from "@/components/work/case-screens";
@@ -48,7 +49,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
             <span className="label text-faint">/</span>
             <span className="label">{c.audience === "business" ? "Для бизнеса" : "Для себя"}</span>
           </div>
-          <h1 className="font-display text-[clamp(36px,8vw,160px)] font-semibold uppercase leading-[0.88] [overflow-wrap:anywhere] [font-variation-settings:'wdth'_100] md:[font-variation-settings:'wdth'_115]">
+          <h1 className="font-display font-semibold uppercase leading-[0.88] [font-variation-settings:'wdth'_100] md:[font-variation-settings:'wdth'_115]" style={{ fontSize: fitTitle(c.title, 160, 34) }}>
             <RiseLines>{c.title}</RiseLines>
           </h1>
           <div className="mt-10 grid gap-10 md:grid-cols-12">
@@ -83,7 +84,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       <div style={pad}>
         <div className="mx-auto max-w-[1440px]">
           <ParallaxCover>
-            <CaseCover c={c} />
+            <CaseCover c={{ ...c, title: "" }} />
           </ParallaxCover>
         </div>
       </div>
@@ -194,7 +195,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
         </div>
         <div className="relative mx-auto max-w-[1440px]">
           <span className="label mb-6 block">Следующий кейс →</span>
-          <span className="block font-display text-[clamp(34px,9vw,160px)] font-semibold uppercase leading-[0.9] [overflow-wrap:anywhere] transition-transform duration-700 ease-[var(--ease-out)] [font-variation-settings:'wdth'_120] group-hover:translate-x-4">
+          <span style={{ fontSize: fitTitle(next.title, 150, 32) }} className="block font-display font-semibold uppercase leading-[0.9] transition-transform duration-700 ease-[var(--ease-out)] [font-variation-settings:'wdth'_120] group-hover:translate-x-4">
             {next.title}
           </span>
           <span className="mt-4 block text-muted">{next.kind}</span>

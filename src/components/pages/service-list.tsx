@@ -43,7 +43,7 @@ export function ServiceList() {
             >
               <span className="font-mono text-[11px] text-faint">{String(i + 1).padStart(2, "0")}</span>
               <span
-                className={`min-w-0 font-display text-[clamp(22px,3.6vw,52px)] uppercase leading-none [overflow-wrap:anywhere] transition-[transform,color] duration-500 ease-[var(--ease-out)] [font-variation-settings:'wdth'_115] group-hover:translate-x-2 ${isOpen ? "text-fg" : "text-fg/80"}`}
+                className={`min-w-0 font-display text-[clamp(18px,3.6vw,52px)] uppercase leading-none [overflow-wrap:anywhere] transition-[transform,color] duration-500 ease-[var(--ease-out)] [font-variation-settings:'wdth'_115] group-hover:translate-x-2 ${isOpen ? "text-fg" : "text-fg/80"}`}
               >
                 {s.title}
               </span>

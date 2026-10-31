@@ -98,7 +98,7 @@ export default function EnglishPage() {
                 <Reveal key={c.slug} delay={(i % 2) * 0.08}>
                   <Link href={`/work/${c.slug}`} hrefLang="ru" className="group block" data-cursor="Open">
                     <div data-tilt className="relative aspect-[16/11] overflow-hidden rounded-[24px] border border-line">
-                      <CaseCover c={c} sizes="(min-width: 768px) 45vw, 100vw" />
+                      <CaseCover c={c} captioned sizes="(min-width: 768px) 45vw, 100vw" />
                     </div>
                     <div className="mt-5 flex items-start justify-between gap-6">
                       <div>

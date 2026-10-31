@@ -90,7 +90,7 @@ function CaseCard({ c, index }: { c: CaseStudy; index: number }) {
     >
       <div data-tilt className="relative aspect-[16/10] overflow-hidden rounded-[28px] border border-line">
         <div className="absolute inset-0 transition-transform duration-[1200ms] ease-[var(--ease-out)] group-hover:scale-[1.04]">
-          <CaseCover c={c} />
+          <CaseCover c={c} captioned />
         </div>
         <div className="absolute left-5 top-5 flex gap-2">
           <span className="rounded-full bg-bg/70 px-3 py-1 font-mono text-[10px] backdrop-blur">0{index + 1}</span>
